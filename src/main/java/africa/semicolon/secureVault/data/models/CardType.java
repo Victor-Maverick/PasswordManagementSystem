@@ -1,2 +1,8 @@
-package africa.semicolon.secureVault.data.models.data.models;public enum CardType {
+package africa.semicolon.secureVault.data.models;
+
+public enum CardType {
+    VISA,
+    MASTER_CARD,
+    VERVE_CARD,
+    AMERICAN_EXPRESS
 }

@@ -1,4 +1,4 @@
-package africa.semicolon.secureVault.data.models.data.models;
+package africa.semicolon.secureVault.data.models;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,6 +14,7 @@ public class User {
     private String id;
     private String username;
     private String password;
+    private boolean isLoggedIn;
     @DBRef
     private List<PasswordEntry> passwordEntryList = new ArrayList<>();
     private LocalDateTime dateCreated = LocalDateTime.now();

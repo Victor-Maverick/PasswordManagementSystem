@@ -1,4 +1,4 @@
-package africa.semicolon.secureVault.data.models.data.models;
+package africa.semicolon.secureVault.data.models;
 
 import lombok.Getter;
 import lombok.Setter;

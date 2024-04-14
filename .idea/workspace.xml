@@ -4,34 +4,219 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="" />
+    <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/controllers/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CardType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CreditCardInformation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/PasswordEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/repositories/CardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/repositories/PasswordEntries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/repositories/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/AddCardRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/DeleteCardRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/DeletePasswordEntryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/DeleteUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/LogoutRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/PasswordEntryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/ViewCardRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/ViewPasswordRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/AddCardResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/LoginResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/PasswordEntryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/RegisterResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ViewCardResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ViewPasswordResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/CardDetailsNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/IncorrectPasswordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/InputMisMatchException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/InvalidCardException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/LoginException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/PasswordNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/SecureVaultAppExceptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/exceptions/UsernameExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/secureVault.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Encryptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/data/repositories/CardRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/data/repositories/PasswordEntriesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/CreditCardServicesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/PasswordEntryServicesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/UserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2f19L3u7a3spra9FePF0B19XjaA" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;HTTP Request.generated-requests | #54.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardRepositoryTest.addCardInformation_cardInformationListIncreasesTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardRepositoryTest.deleteCardInformationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.addCardInformationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.addCardWithInvalidDigitsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.addInvalidCardLength_throwsException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.findCardInformationForAUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CreditCardServicesTest.viewCardInformationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordEntriesTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordEntryServicesTest.addPassword_listOfPasswordsIncreaseTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordEntryServicesTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordEntryServicesTest.viewPasswordTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.addCardInformationWhileLoggedInTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.secureVault.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="africa.semicolon.secureVault.services" />
+      <recent name="africa.semicolon.secureVault.data.repositories" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.secureVault">
+    <configuration name="generated-requests | #54" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="54" requestIdentifier="#54" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="CreditCardServicesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="secureVault" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="africa.semicolon.secureVault.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="africa.semicolon.secureVault.services" />
+      <option name="MAIN_CLASS_NAME" value="africa.semicolon.secureVault.services.CreditCardServicesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordEntryServicesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="secureVault" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="africa.semicolon.secureVault.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="africa.semicolon.secureVault.services" />
+      <option name="MAIN_CLASS_NAME" value="africa.semicolon.secureVault.services.PasswordEntryServicesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="secureVault" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="africa.semicolon.secureVault.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="africa.semicolon.secureVault.services" />
+      <option name="MAIN_CLASS_NAME" value="africa.semicolon.secureVault.services.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="secureVault" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="secureVault" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="africa.semicolon.secureVault.secureVault" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="africa.semicolon.secureVault.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.secureVault" />
+        <item itemvalue="HTTP Request.generated-requests | #54" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.PasswordEntryServicesTest" />
+        <item itemvalue="JUnit.CreditCardServicesTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -47,11 +232,41 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712957659204</updated>
-      <workItem from="1712957660543" duration="6000" />
+      <workItem from="1712957660543" duration="1003000" />
+      <workItem from="1712960656847" duration="113000" />
+      <workItem from="1712984632462" duration="2830000" />
+      <workItem from="1712987539816" duration="908000" />
+      <workItem from="1712988486136" duration="151000" />
+      <workItem from="1712988657420" duration="9204000" />
+      <workItem from="1712998085847" duration="364000" />
+      <workItem from="1712998465161" duration="913000" />
+      <workItem from="1713001677403" duration="526000" />
+      <workItem from="1713002682437" duration="203000" />
+      <workItem from="1713002911693" duration="762000" />
+      <workItem from="1713003695300" duration="30000" />
+      <workItem from="1713003746895" duration="259000" />
+      <workItem from="1713004079452" duration="130000" />
+      <workItem from="1713004288067" duration="1069000" />
+      <workItem from="1713005530777" duration="2597000" />
+      <workItem from="1713008160497" duration="5282000" />
+      <workItem from="1713013511640" duration="1197000" />
+      <workItem from="1713014870227" duration="3580000" />
+      <workItem from="1713018782595" duration="1438000" />
+      <workItem from="1713020309393" duration="3395000" />
+      <workItem from="1713029442592" duration="564000" />
+      <workItem from="1713097135211" duration="52000" />
+      <workItem from="1713097234725" duration="695000" />
+      <workItem from="1713097992995" duration="477000" />
+      <workItem from="1713098947222" duration="1373000" />
+      <workItem from="1713100404031" duration="11277000" />
+      <workItem from="1713115350612" duration="1426000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

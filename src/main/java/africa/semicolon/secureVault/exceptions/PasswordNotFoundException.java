@@ -1,2 +1,7 @@
-package africa.semicolon.secureVault.exceptions;public class PasswordNotFoundException {
+package africa.semicolon.secureVault.exceptions;
+
+public class PasswordNotFoundException extends SecureVaultAppExceptions{
+    public PasswordNotFoundException(String message) {
+        super(message);
+    }
 }
