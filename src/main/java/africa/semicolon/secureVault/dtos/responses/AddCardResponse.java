@@ -8,6 +8,6 @@ import lombok.Setter;
 @Data
 public class AddCardResponse {
     private String id;
-    private String cardNumber;
     private CardType cardType;
+    private String bankName;
 }

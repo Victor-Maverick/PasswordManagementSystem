@@ -10,5 +10,4 @@ public class ViewCardResponse {
     private CardType cardType;
     private String pin;
     private String bankName;
-    private String nameOnCard;
 }

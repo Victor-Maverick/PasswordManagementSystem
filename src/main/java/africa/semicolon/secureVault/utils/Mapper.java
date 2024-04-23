@@ -34,7 +34,7 @@ public class Mapper {
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
         AddCardResponse response = new AddCardResponse();
-        response.setCardNumber(cardInformation.getCardNumber());
+        response.setBankName(cardInformation.getBankName());
         response.setId(cardInformation.getId());
         response.setCardType(cardInformation.getCardType());
         return response;
@@ -53,13 +53,11 @@ public class Mapper {
     }
     public static ViewCardResponse mapCard(CreditCardInformation cardInformation) throws Exception {
         ViewCardResponse response = new ViewCardResponse();
-        response.setNameOnCard(cardInformation.getNameOnCard());
         response.setUsername(cardInformation.getUsername());
         response.setCardType(cardInformation.getCardType());
         response.setPin(decrypt(cardInformation.getPin()));
-        response.setCardNumber(cardInformation.getCardNumber());
+        response.setCardNumber(decrypt(cardInformation.getCardNumber()));
         response.setBankName(cardInformation.getBankName());
-        response.setNameOnCard(cardInformation.getNameOnCard());
         return response;
     }
 

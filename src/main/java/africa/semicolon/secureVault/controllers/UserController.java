@@ -78,8 +78,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("view-cardsFor{username}")
-    public ResponseEntity<?> viewAllCardsFor(@PathVariable String username){
+    @GetMapping("/view-cardsFor{username}")
+    public ResponseEntity<?> viewAllCardsFor(@PathVariable("username") String username){
         try{
             var response = userService.findCardInformationFor(username);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
@@ -89,7 +89,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-Card")
-    public ResponseEntity<?> deleteCardDetails(DeleteCardRequest deleteRequest){
+    public ResponseEntity<?> deleteCardDetails(@RequestBody DeleteCardRequest deleteRequest){
         try{
             String response = userService.deleteCardInformation(deleteRequest);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
@@ -109,7 +109,7 @@ public class UserController {
     }
 
     @GetMapping("/view-password")
-    public ResponseEntity<?> viewPassword(ViewPasswordRequest viewRequest){
+    public ResponseEntity<?> viewPassword(@RequestBody ViewPasswordRequest viewRequest){
         try{
             ViewPasswordResponse response = userService.viewPassword(viewRequest);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
@@ -118,8 +118,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("view-allPasswords/{username}")
-    public ResponseEntity<?> viewAllPasswords(@PathVariable String username){
+    @GetMapping("/view-allPasswords{name}")
+    public ResponseEntity<?> viewAllPasswords(@PathVariable("name") String username){
         try{
             List<PasswordEntry> response = userService.findPasswordEntriesFor(username);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
@@ -129,7 +129,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-password")
-    public ResponseEntity<?> deletePassword(DeletePasswordEntryRequest deleteRequest){
+    public ResponseEntity<?> deletePassword(@RequestBody DeletePasswordEntryRequest deleteRequest){
         try{
             String response = userService.deletePasswordEntry(deleteRequest);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
