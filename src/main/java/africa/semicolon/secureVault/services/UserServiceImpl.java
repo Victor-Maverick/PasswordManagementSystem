@@ -55,8 +55,12 @@ public class UserServiceImpl implements UserService{
         }
 
     @Override
-    public String turnSafeModeOn() {
-        return "";
+    public String turnSafeModeOn(String username) {
+            User user = users.findByUsername(username);
+            if(user == null)throw new UserNotFoundException(username+" not found");
+            validateUserLogin(user);
+            user.setSecureModeOn(true);
+        return "Secure mode on";
     }
 
     @Override
