@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService{
             User user = users.findByUsername(username);
             if(user == null)throw new UserNotFoundException(username+" not found");
             validateUserLogin(user);
+            if (!user.isSecureModeOn())throw new InvalidCardException("No details found");
         return cardServices.findCardDetailsBelongingTo(username);
     }
 

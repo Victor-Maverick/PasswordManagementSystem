@@ -15,6 +15,7 @@ public class User {
     private String username;
     private String password;
     private boolean isLoggedIn;
+    private boolean isSecureModeOn;
     @DBRef
     private List<PasswordEntry> passwordEntryList = new ArrayList<>();
     private LocalDateTime dateCreated = LocalDateTime.now();
