@@ -18,6 +18,8 @@ public interface UserService {
 
     String logout(LogoutRequest logoutRequest);
 
+    String turnSafeModeOn();
+
 
     String deleteUser(DeleteUserRequest deleteUserRequest);
 
