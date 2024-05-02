@@ -168,13 +168,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ShareDetailsResponse sharePassword(SharePasswordRequest shareRequest) {
-        User user = users.findByUsername(shareRequest.getSenderName());
-        if(user == null) throw new UserNotFoundException(shareRequest.getSenderName()+" not found");
-        validateUserLogin(user);
+        User sender = users.findByUsername(shareRequest.getSenderName());
+        if(sender == null) throw new UserNotFoundException(shareRequest.getSenderName()+" not found");
+        validateUserLogin(sender);
         User receiver = users.findByUsername(shareRequest.getReceiverName());
         if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverName()+" not found");
         PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(shareRequest.getPasswordId());
-        return null;
+        List<PasswordEntry> passwordEntryList = receiver.getPasswordEntryList();
+        passwordEntryList.add(passwordEntry);
+        receiver.setPasswordEntryList(passwordEntryList);
+        users.save(receiver);
+        return passwordShareMap(sender, receiver, passwordEntry);
     }
 
     private void validateRegistration(RegisterRequest registerRequest) {

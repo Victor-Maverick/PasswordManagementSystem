@@ -108,6 +108,13 @@ public class Mapper {
         response.setReceiverName(receiver.getUsername());
         return response;
     }
+    public static ShareDetailsResponse passwordShareMap(User sender, User receiver, PasswordEntry passwordEntry){
+        ShareDetailsResponse response = new ShareDetailsResponse();
+        response.setDetailId(passwordEntry.getId());
+        response.setSenderName(sender.getUsername());
+        response.setReceiverName(receiver.getUsername());
+        return response;
+    }
 
     public static boolean isValidCardNumber(AddCardRequest cardRequest){
         String cardNumber = cardRequest.getCardNumber().replaceAll("\\D", "");
