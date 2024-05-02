@@ -5,10 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class AddCardRequest {
+public class TurnSafeModeOffRequest {
     private String username;
-    private String pin;
-    private String cardNumber;
-    private String bankName;
-    private String nameOnCard;
+    private String password;
 }

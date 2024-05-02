@@ -13,4 +13,6 @@ public class CreditCardInformation {
     private String cardNumber;
     private String pin;
     private CardType cardType;
+    private int cardNumberKey;
+    private int pinKey;
 }

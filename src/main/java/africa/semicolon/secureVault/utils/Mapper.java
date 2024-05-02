@@ -9,8 +9,8 @@ import africa.semicolon.secureVault.dtos.responses.*;
 import africa.semicolon.secureVault.exceptions.InvalidCardException;
 
 import static africa.semicolon.secureVault.data.models.CardType.*;
-import static africa.semicolon.secureVault.utils.Encryptor.decrypt;
-import static africa.semicolon.secureVault.utils.Encryptor.encrypt;
+import static africa.semicolon.secureVault.utils.EncryptDecrypt.*;
+import static africa.semicolon.secureVault.utils.GenerateKeys.generateKey;
 
 public class Mapper {
 
@@ -41,7 +41,9 @@ public class Mapper {
     }
 
     public static void map(PasswordEntry passwordEntry, PasswordEntryRequest passwordRequest) throws Exception {
-        passwordEntry.setPassword(encrypt(passwordRequest.getPassword()));
+        int passKey = generateKey();
+        passwordEntry.setPasswordKey(passKey);
+        passwordEntry.setPassword(encrypt(passwordRequest.getPassword(), passwordEntry.getPasswordKey()));
         passwordEntry.setUsername(passwordRequest.getUsername());
         passwordEntry.setWebsite(passwordRequest.getWebsite());
     }
@@ -55,8 +57,9 @@ public class Mapper {
         ViewCardResponse response = new ViewCardResponse();
         response.setUsername(cardInformation.getUsername());
         response.setCardType(cardInformation.getCardType());
-        response.setPin(decrypt(cardInformation.getPin()));
-        response.setCardNumber(decrypt(cardInformation.getCardNumber()));
+        response.setPin(decrypt(cardInformation.getPin(), cardInformation.getPinKey()));
+        response.setNameOnCard(encrypt(cardInformation.getNameOnCard(), cardInformation.getCardNumberKey()));
+        response.setCardNumber(decrypt(cardInformation.getCardNumber(), cardInformation.getCardNumberKey()));
         response.setBankName(cardInformation.getBankName());
         return response;
     }
@@ -65,17 +68,22 @@ public class Mapper {
         ViewPasswordResponse response = new ViewPasswordResponse();
         response.setId(passwordEntry.getId());
         response.setWebsite(passwordEntry.getWebsite());
-        response.setPassword(decrypt(passwordEntry.getPassword()));
+        response.setPassword(decrypt(passwordEntry.getPassword(), passwordEntry.getPasswordKey()));
         return response;
     }
 
 
     public static void map(CreditCardInformation cardInformation, AddCardRequest cardRequest) throws Exception {
-        cardInformation.setCardNumber(cardRequest.getCardNumber());
-        cardInformation.setUsername(cardRequest.getUsername());
         setCardType(cardInformation);
-        cardInformation.setBankName(cardRequest.getBankName());
-        cardInformation.setPin(encrypt(cardRequest.getPin()));
+        int cardKey = generateKey();
+        int pinKey = generateKey();
+        cardInformation.setCardNumberKey(cardKey);
+        cardInformation.setPinKey(pinKey);
+        cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardNumberKey()));
+        cardInformation.setUsername(cardRequest.getUsername());
+        cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardNumberKey()));
+        cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardNumberKey()));
+        cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getPinKey()));
     }
 
 
@@ -91,6 +99,14 @@ public class Mapper {
             default -> throw new InvalidCardException("invalid card");
 
         }
+    }
+
+    public static ShareCardDetailsResponse shareCardMap(User sender, User receiver, CreditCardInformation cardInformation){
+        ShareCardDetailsResponse response = new ShareCardDetailsResponse();
+        response.setCardId(cardInformation.getId());
+        response.setSenderName(sender.getUsername());
+        response.setReceiverName(receiver.getUsername());
+        return response;
     }
 
     public static boolean isValidCardNumber(AddCardRequest cardRequest){

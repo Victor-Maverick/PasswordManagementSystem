@@ -139,3 +139,7 @@ public class UserController {
     }
 
 }
+//--> Unlock before a findAllPasswords
+//--> Use a question to reset the unlock password
+//--> Generate password
+//-->

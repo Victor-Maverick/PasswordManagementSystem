@@ -1,3 +1,37 @@
+DELETE http://localhost:8800/api/delete-Card
+Content-Type: application/json
+Content-Length: 66
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "cardId": "6630798e9f13ac3acf42edd0",
+  "username": "victor"
+}
+
+<> 2024-04-30T055547.200.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 100
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "victor",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "uba"
+}
+
+<> 2024-04-30T055438.201.json
+
+###
+
 GET http://localhost:8800/api/view-cardInfo
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)

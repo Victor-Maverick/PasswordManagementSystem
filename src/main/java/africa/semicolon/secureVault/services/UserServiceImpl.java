@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static africa.semicolon.secureVault.utils.Mapper.map;
-import static africa.semicolon.secureVault.utils.Mapper.mapLogin;
+import static africa.semicolon.secureVault.utils.Mapper.*;
 
 @Service
 @AllArgsConstructor
@@ -64,6 +63,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public String turnOffSafeModeOn(TurnSafeModeOffRequest turnSafeModeOffRequest) {
+            User user = users.findByUsername(turnSafeModeOffRequest.getUsername());
+            if(user == null)throw new UserNotFoundException(turnSafeModeOffRequest.getUsername()+" not found");
+            validateUserLogin(user);
+        return "";
+    }
+
+    @Override
         public String deleteUser(DeleteUserRequest deleteUserRequest) {
             User user = users.findByUsername(deleteUserRequest.getUsername());
             if(user == null)throw new UserNotFoundException(deleteUserRequest.getUsername()+ " not found");
@@ -94,7 +101,10 @@ public class UserServiceImpl implements UserService{
             User user = users.findByUsername(username);
             if(user == null)throw new UserNotFoundException(username+" not found");
             validateUserLogin(user);
-            if (user.isSecureModeOn())throw new InvalidCardException("No details found");
+            if (user.isSecureModeOn()){
+                System.out.println(List.of());
+                throw new InvalidCardException("No details found");
+            }
         return cardServices.findCardDetailsBelongingTo(username);
     }
 
@@ -140,7 +150,10 @@ public class UserServiceImpl implements UserService{
             User user = users.findByUsername(username);
             if(user == null)throw new UserNotFoundException(username+" not found");
             validateUserLogin(user);
-        if (user.isSecureModeOn())throw new InvalidCardException("No details found");
+        if (user.isSecureModeOn()){
+            System.out.println(List.of());
+            throw new InvalidCardException("No details found");
+        }
         return passwordEntryServices.findAllPasswordsFor(username);
     }
 
@@ -163,8 +176,25 @@ public class UserServiceImpl implements UserService{
         User user = users.findByUsername(viewRequest.getUsername());
         if (user == null) throw new UserNotFoundException(viewRequest.getUsername()+" not found");
         validateUserLogin(user);
-        if (user.isSecureModeOn())throw new InvalidCardException("No details found");
+        if (user.isSecureModeOn()){
+            throw new InvalidCardException("No details found");
+        }
         return passwordEntryServices.viewPassword(viewRequest);
+    }
+
+    @Override
+    public ShareCardDetailsResponse shareCardInformation(ShareCardDetailsRequest shareRequest) {
+        User sender = users.findByUsername(shareRequest.getSenderUsername());
+        if(sender == null) throw new UserNotFoundException(shareRequest.getSenderUsername()+" not found");
+        validateUserLogin(sender);
+        User receiver = users.findByUsername(shareRequest.getReceiverUsername());
+        if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverUsername()+" not found");
+        CreditCardInformation cardInformation = cardServices.findById(shareRequest.getCardId());
+        List<CreditCardInformation> cardList = receiver.getCardInformationList();
+        cardList.add(cardInformation);
+        receiver.setCardInformationList(cardList);
+        users.save(receiver);
+        return shareCardMap(sender, receiver, cardInformation);
     }
 
     private void validateRegistration(RegisterRequest registerRequest) {
