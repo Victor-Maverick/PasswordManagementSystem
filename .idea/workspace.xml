@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/ShareCardDetailsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/TurnSafeModeOffRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ShareCardDetailsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/EncryptDecrypt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/GenerateKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CreditCardInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CreditCardInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/PasswordEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/PasswordEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/AddCardRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/AddCardRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ViewCardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ViewCardResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ShareCardDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/ShareDetailsResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" afterDir="false" />
@@ -233,7 +223,7 @@
       <workItem from="1714458147141" duration="3852000" />
       <workItem from="1714552130712" duration="1882000" />
       <workItem from="1714576349724" duration="12000" />
-      <workItem from="1714638235484" duration="9363000" />
+      <workItem from="1714638235484" duration="14482000" />
     </task>
     <servers />
   </component>

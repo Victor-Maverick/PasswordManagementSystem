@@ -4,8 +4,7 @@ import africa.semicolon.secureVault.data.models.CreditCardInformation;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.*;
-import africa.semicolon.secureVault.dtos.responses.ShareCardDetailsResponse;
-import org.springframework.beans.MutablePropertyValues;
+import africa.semicolon.secureVault.dtos.responses.ShareDetailsResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +17,6 @@ public interface UserService {
     LoginResponse login(LoginRequest loginRequest);
 
     String logout(LogoutRequest logoutRequest);
-
-    String turnSafeModeOn(String username);
-
-    String turnOffSafeModeOn(TurnSafeModeOffRequest turnSafeModeOffRequest);
-
 
     String deleteUser(DeleteUserRequest deleteUserRequest);
 
@@ -41,5 +35,6 @@ public interface UserService {
     String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest);
 
     ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest);
-    ShareCardDetailsResponse shareCardInformation(ShareCardDetailsRequest shareDetails);
+    ShareDetailsResponse shareCardInformation(ShareCardDetailsRequest shareDetails);
+    ShareDetailsResponse sharePassword(SharePasswordRequest shareRequest);
 }

@@ -101,9 +101,9 @@ public class Mapper {
         }
     }
 
-    public static ShareCardDetailsResponse shareCardMap(User sender, User receiver, CreditCardInformation cardInformation){
-        ShareCardDetailsResponse response = new ShareCardDetailsResponse();
-        response.setCardId(cardInformation.getId());
+    public static ShareDetailsResponse shareCardMap(User sender, User receiver, CreditCardInformation cardInformation){
+        ShareDetailsResponse response = new ShareDetailsResponse();
+        response.setDetailId(cardInformation.getId());
         response.setSenderName(sender.getUsername());
         response.setReceiverName(receiver.getUsername());
         return response;
