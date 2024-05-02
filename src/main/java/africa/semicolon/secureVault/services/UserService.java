@@ -30,7 +30,7 @@ public interface UserService {
 
     PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest);
 
-    List<PasswordEntry> findPasswordEntriesFor(String username4);
+    List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest);
 
     String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest);
 

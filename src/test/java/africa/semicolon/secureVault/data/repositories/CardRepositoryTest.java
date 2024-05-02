@@ -1,8 +1,6 @@
 package africa.semicolon.secureVault.data.repositories;
 
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
-import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ class CardRepositoryTest {
     @Test
     public void addCardInformation_cardInformationListIncreasesTest(){
         CreditCardInformation cardInformation = new CreditCardInformation();
-        cardInformation.setUsername("username");
+        cardInformation.setOwnerName("username");
         cardInformation.setCardNumber("5199110726076091");
         cardInformation.setBankName("Wells Fargo");
         cardInformation.setPin("12345");

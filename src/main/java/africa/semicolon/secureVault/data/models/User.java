@@ -16,6 +16,8 @@ public class User {
     private String password;
     private boolean isLoggedIn;
     @DBRef
+    private List<User> emergencyContacts = new ArrayList<>(3);
+    @DBRef
     private List<PasswordEntry> passwordEntryList = new ArrayList<>();
     private LocalDateTime dateCreated = LocalDateTime.now();
     @DBRef

@@ -55,7 +55,7 @@ public class Mapper {
     }
     public static ViewCardResponse mapCard(CreditCardInformation cardInformation) throws Exception {
         ViewCardResponse response = new ViewCardResponse();
-        response.setUsername(cardInformation.getUsername());
+        response.setUsername(cardInformation.getOwnerName());
         response.setCardType(cardInformation.getCardType());
         response.setPin(decrypt(cardInformation.getPin(), cardInformation.getPinKey()));
         response.setNameOnCard(encrypt(cardInformation.getNameOnCard(), cardInformation.getCardNumberKey()));
@@ -80,7 +80,7 @@ public class Mapper {
         cardInformation.setCardNumberKey(cardKey);
         cardInformation.setPinKey(pinKey);
         cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardNumberKey()));
-        cardInformation.setUsername(cardRequest.getUsername());
+        cardInformation.setOwnerName(cardRequest.getUsername());
         cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardNumberKey()));
         cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardNumberKey()));
         cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getPinKey()));

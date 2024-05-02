@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ViewCardRequest {
-    private String id;
+public class FindUserEntriesRequest {
+    private String ownerName;
     private String viewerName;
 }

@@ -102,9 +102,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ViewCardResponse viewCardDetails(ViewCardRequest viewRequest) {
-            User user = users.findByUsername(viewRequest.getUsername());
-            if(user == null)throw new UserNotFoundException(viewRequest.getUsername()+" not found");
+            User user = users.findByUsername(viewRequest.getViewerName());
+            if(user == null)throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
             validateUserLogin(user);
+            CreditCardInformation cardInformation = cardServices.findById(viewRequest.getId());
+            User cardOwner = users.findByUsername(cardInformation.getOwnerName());
+            List<User> allowedUsers = cardOwner.getEmergencyContacts();
+            allowedUsers.forEach(user1->{if (!user1.getUsername().equalsIgnoreCase(user.getUsername()))throw new UserNotAllowedException("Not allowed");});
         return cardServices.viewCardInformation(viewRequest);
     }
 
@@ -123,11 +127,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<PasswordEntry> findPasswordEntriesFor(String username) {
-            User user = users.findByUsername(username);
-            if(user == null)throw new UserNotFoundException(username+" not found");
+    public List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest) {
+            User owner = users.findByUsername(findRequest.getOwnerName());
+            if(owner == null)throw new UserNotFoundException(findRequest.getOwnerName()+" not found");
+
+            User user = users.findByUsername(findRequest.getViewerName());
+            if(user == null)throw new UserNotFoundException(findRequest.getViewerName()+" not found");
             validateUserLogin(user);
-        return passwordEntryServices.findAllPasswordsFor(username);
+            List<User> allowedUsers = owner.getEmergencyContacts();
+            if (!user.getUsername().equalsIgnoreCase(owner.getUsername()) && !isUserAllowed(allowedUsers,user))
+                throw new UserNotAllowedException("Not allowed");
+         return passwordEntryServices.findAllPasswordsFor(findRequest);
+    }
+
+    private boolean isUserAllowed(List<User> userList, User user) {
+        for (User value : userList)
+            if (value.getUsername().equalsIgnoreCase(user.getUsername())) {
+                return true;
+            }
+
+        return false;
     }
 
     @Override
@@ -148,6 +167,7 @@ public class UserServiceImpl implements UserService{
         User user = users.findByUsername(viewRequest.getUsername());
         if (user == null) throw new UserNotFoundException(viewRequest.getUsername()+" not found");
         validateUserLogin(user);
+        List<User> allowedContacts = user.getEmergencyContacts();
         return passwordEntryServices.viewPassword(viewRequest);
     }
 

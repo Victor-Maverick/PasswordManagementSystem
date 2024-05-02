@@ -255,7 +255,7 @@ public class UserServiceTest {
         assertEquals(1, userService.findCardInformationFor("username4").size());
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(card.getId());
-        viewRequest.setUsername("username4");
+        viewRequest.setViewerName("username4");
         var response = userService.viewCardDetails(viewRequest);
         assertEquals(response.getPin(), cardRequest.getPin());
     }
@@ -279,7 +279,7 @@ public class UserServiceTest {
         assertEquals(1, userService.findCardInformationFor("username4").size());
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(card.getId());
-        viewRequest.setUsername("username4");
+        viewRequest.setViewerName("username4");
         LogoutRequest logoutRequest = new LogoutRequest();
         logoutRequest.setUsername("username4");
         userService.logout(logoutRequest);
@@ -305,7 +305,9 @@ public class UserServiceTest {
         passwordRequest.setPassword("password");
         passwordRequest.setWebsite("www.pling.com");
         userService.addPasswordEntry(passwordRequest);
-        assertEquals(1, userService.findPasswordEntriesFor("username4").size());
+        FindUserEntriesRequest request = new FindUserEntriesRequest();
+        request.setOwnerName("username4");
+        assertEquals(1, userService.findPasswordEntriesFor(request).size());
     }
 
     @Test
@@ -323,12 +325,14 @@ public class UserServiceTest {
         passwordRequest.setPassword("password");
         passwordRequest.setWebsite("www.pling.com");
         var response = userService.addPasswordEntry(passwordRequest);
-        assertEquals(1, userService.findPasswordEntriesFor("username4").size());
+        FindUserEntriesRequest request = new FindUserEntriesRequest();
+        request.setOwnerName("username4");
+        assertEquals(1, userService.findPasswordEntriesFor(request).size());
         DeletePasswordEntryRequest deleteRequest = new DeletePasswordEntryRequest();
         deleteRequest.setId(response.getId());
         deleteRequest.setUsername("username4");
         userService.deletePasswordEntry(deleteRequest);
-        assertEquals(0, userService.findPasswordEntriesFor("username4").size());
+        assertEquals(0, userService.findPasswordEntriesFor(request).size());
 
     }
 

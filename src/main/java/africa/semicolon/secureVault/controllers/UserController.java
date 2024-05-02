@@ -118,10 +118,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/view-allPasswords{name}")
-    public ResponseEntity<?> viewAllPasswords(@PathVariable("name") String username){
+    @GetMapping("/view-allPasswordsFor")
+    public ResponseEntity<?> viewAllPasswords(@RequestBody FindUserEntriesRequest findRequest){
         try{
-            List<PasswordEntry> response = userService.findPasswordEntriesFor(username);
+            List<PasswordEntry> response = userService.findPasswordEntriesFor(findRequest);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
         }catch (SecureVaultAppExceptions e){
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);

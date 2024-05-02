@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("cards")
 public class CreditCardInformation {
     private String id;
-    private String username;
+    private String ownerName;
     private String nameOnCard;
     private String bankName;
     private String cardNumber;

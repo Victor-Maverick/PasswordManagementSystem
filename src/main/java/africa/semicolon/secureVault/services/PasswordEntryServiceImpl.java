@@ -3,6 +3,7 @@ package africa.semicolon.secureVault.services;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.repositories.PasswordEntries;
 import africa.semicolon.secureVault.dtos.requests.DeletePasswordEntryRequest;
+import africa.semicolon.secureVault.dtos.requests.FindUserEntriesRequest;
 import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
 import africa.semicolon.secureVault.dtos.requests.ViewPasswordRequest;
 import africa.semicolon.secureVault.dtos.responses.PasswordEntryResponse;
@@ -53,8 +54,10 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
     }
 
     @Override
-    public List<PasswordEntry> findAllPasswordsFor(String username) {
-        return passwordEntries.findByUsername(username);
+    public List<PasswordEntry> findAllPasswordsFor(FindUserEntriesRequest findRequest) {
+        List<PasswordEntry> userEntries = passwordEntries.findByUsername(findRequest.getOwnerName());
+        if(userEntries.isEmpty()) return List.of();
+        return userEntries;
     }
 
     @Override
