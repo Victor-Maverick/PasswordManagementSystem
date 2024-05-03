@@ -16,10 +16,13 @@ public class User {
     private String password;
     private boolean isLoggedIn;
     @DBRef
-    private List<User> emergencyContacts = new ArrayList<>(3);
+    private List<User> emergencyContacts = new ArrayList<>();
+    @DBRef
+    private List<User> accessibleVaults = new ArrayList<>();
     @DBRef
     private List<PasswordEntry> passwordEntryList = new ArrayList<>();
     private LocalDateTime dateCreated = LocalDateTime.now();
+    private LocalDateTime dateAccessed;
     @DBRef
     private  List<CreditCardInformation> cardInformationList = new ArrayList<>();
 }
