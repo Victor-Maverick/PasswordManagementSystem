@@ -138,6 +138,26 @@ public class UserController {
         }
     }
 
+    @PostMapping("/share-card")
+    public ResponseEntity<?> shareCardDetails(@RequestBody ShareCardDetailsRequest request){
+        try{
+            var response = userService.shareCardInformation(request);
+            return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/share-password")
+    public ResponseEntity<?> sharePassword(@RequestBody SharePasswordRequest request){
+        try{
+            var response = userService.sharePassword(request);
+            return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
 }
 //--> Unlock before a findAllPasswords
 //--> Use a question to reset the unlock password

@@ -306,7 +306,7 @@ public class UserServiceTest {
         passwordRequest.setWebsite("www.pling.com");
         userService.addPasswordEntry(passwordRequest);
         FindUserEntriesRequest request = new FindUserEntriesRequest();
-        request.setOwnerName("username4");
+        request.setUsername("username4");
         assertEquals(1, userService.findPasswordEntriesFor(request).size());
     }
 
@@ -326,7 +326,7 @@ public class UserServiceTest {
         passwordRequest.setWebsite("www.pling.com");
         var response = userService.addPasswordEntry(passwordRequest);
         FindUserEntriesRequest request = new FindUserEntriesRequest();
-        request.setOwnerName("username4");
+        request.setUsername("username4");
         assertEquals(1, userService.findPasswordEntriesFor(request).size());
         DeletePasswordEntryRequest deleteRequest = new DeletePasswordEntryRequest();
         deleteRequest.setId(response.getId());
@@ -353,7 +353,7 @@ public class UserServiceTest {
         var response = userService.addPasswordEntry(passwordRequest);
         ViewPasswordRequest viewRequest = new ViewPasswordRequest();
         viewRequest.setId(response.getId());
-        viewRequest.setUsername("username4");
+        viewRequest.setAuthorName("username4");
         var viewResponse = userService.viewPassword(viewRequest);
         assertEquals(viewResponse.getPassword(), "password");
     }

@@ -6,4 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class EmergencyAccessRequest {
+    private String accessorName;
+    private String ownerUsername;
 }

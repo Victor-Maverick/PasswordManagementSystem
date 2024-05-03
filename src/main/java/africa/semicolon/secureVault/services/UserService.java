@@ -37,5 +37,4 @@ public interface UserService {
     ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest);
     ShareDetailsResponse shareCardInformation(ShareCardDetailsRequest shareDetails);
     ShareDetailsResponse sharePassword(SharePasswordRequest shareRequest);
-    AccessGrantResponse grantUserAccess(EmergencyAccessRequest request);
 }

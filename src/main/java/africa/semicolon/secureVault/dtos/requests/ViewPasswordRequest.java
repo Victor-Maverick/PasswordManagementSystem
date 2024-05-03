@@ -7,5 +7,6 @@ import lombok.Setter;
 @Getter
 public class ViewPasswordRequest {
     private String id;
-    private String username;
+    private String authorName;
+    private String viewerName;
 }

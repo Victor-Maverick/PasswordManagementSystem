@@ -57,7 +57,7 @@ public class PasswordEntryServicesTest {
         assertEquals(1, passwordEntries.count());
         ViewPasswordRequest viewRequest = new ViewPasswordRequest();
         viewRequest.setId(response.getId());
-        viewRequest.setUsername("username");
+        viewRequest.setAuthorName("username");
         var viewResponse = passwordEntryServices.viewPassword(viewRequest);
         assertEquals(viewResponse.getPassword(), "password");
     }

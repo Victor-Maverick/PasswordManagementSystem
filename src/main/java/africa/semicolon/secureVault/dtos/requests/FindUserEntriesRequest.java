@@ -6,6 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class FindUserEntriesRequest {
-    private String ownerName;
-    private String viewerName;
+    private String username;
 }

@@ -1,3 +1,393 @@
+POST http://localhost:8800/api/share-card
+Content-Type: application/json
+Content-Length: 107
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "cardId": "663500957017433a7d43b045",
+  "senderUsername": "Gagnon",
+  "receiverUsername": "GReyhound"
+}
+
+<> 2024-05-03T162200.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "663500957017433a7d43b045",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T162012.200.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 144
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "WellsFar",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T161949.201.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T161927.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T161916.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T161509.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T161447.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T161112.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634fd2785ae3056e3acc790",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T160935.200.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 141
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "Wells",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T160511.201.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 142
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "Zenith",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T160219.201.json
+
+###
+
+POST http://localhost:8800/api/register
+Content-Type: application/json
+Content-Length: 51
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "victorr",
+  "password": "Huncho"
+}
+
+<> 2024-05-03T155228.201.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634f39121208345442f096a",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T153023.200.json
+
+###
+
+GET http://localhost:8800/api/view-cardInfo
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 64
+
+{
+  "id": "6634f39121208345442f096a",
+  "viewerName": "Gagnon"
+}
+
+<> 2024-05-03T152811.200.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 139
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "uba",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T152417.201.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 139
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "uba",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T151733.400.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 139
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "uba",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T151051.400.json
+
+###
+
+POST http://localhost:8800/api/add-cardInfo
+Content-Type: application/json
+Content-Length: 139
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "pin": "1234",
+  "cardNumber": "5199110726076091",
+  "bankName": "uba",
+  "nameOnCard": "Msonter Orlu Victor"
+}
+
+<> 2024-05-03T151017.400.json
+
+###
+
+POST http://localhost:8800/api/sign-in
+Content-Type: application/json
+Content-Length: 50
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "password": "Huncho"
+}
+
+<> 2024-05-03T150810.200.json
+
+###
+
+POST http://localhost:8800/api/sign-in
+Content-Type: application/json
+Content-Length: 55
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "GReyhound",
+  "password": "password"
+}
+
+<> 2024-05-03T150743.200.json
+
+###
+
+POST http://localhost:8800/api/sign-in
+Content-Type: application/json
+Content-Length: 53
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "GReyhound",
+  "password": "Huncho"
+}
+
+<> 2024-05-03T150727.400.json
+
+###
+
+POST http://localhost:8800/api/register
+Content-Type: application/json
+Content-Length: 55
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "GReyhound",
+  "password": "password"
+}
+
+<> 2024-05-03T150646.201.json
+
+###
+
+POST http://localhost:8800/api/register
+Content-Type: application/json
+Content-Length: 50
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "Gagnon",
+  "password": "Huncho"
+}
+
+<> 2024-05-03T150528.201.json
+
+###
+
 DELETE http://localhost:8800/api/delete-Card
 Content-Type: application/json
 Content-Length: 66

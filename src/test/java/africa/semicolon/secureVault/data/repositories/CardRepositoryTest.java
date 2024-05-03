@@ -19,7 +19,7 @@ class CardRepositoryTest {
     @Test
     public void addCardInformation_cardInformationListIncreasesTest(){
         CreditCardInformation cardInformation = new CreditCardInformation();
-        cardInformation.setOwnerName("username");
+        cardInformation.setUsername("username");
         cardInformation.setCardNumber("5199110726076091");
         cardInformation.setBankName("Wells Fargo");
         cardInformation.setPin("12345");

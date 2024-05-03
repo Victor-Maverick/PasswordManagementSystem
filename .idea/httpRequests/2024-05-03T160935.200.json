@@ -1,0 +1,11 @@
+{
+  "data": {
+    "username": "Gagnon",
+    "cardNumber": "ꗨꗤꗬꗬꗤꗤꗣꗪꗥꗩꗣꗪꗩꗣꗬꗤ",
+    "cardType": "MASTER_CARD",
+    "pin": "1234",
+    "bankName": "Wells",
+    "nameOnCard": "ꛢ꜈꜄꜃꜉꛺꜇ꚵꛤ꜇꜁꜊ꚵꛫ꛾꛸꜉꜄꜇"
+  },
+  "successful": true
+}

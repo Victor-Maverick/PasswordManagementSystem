@@ -55,7 +55,7 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
 
     @Override
     public List<PasswordEntry> findAllPasswordsFor(FindUserEntriesRequest findRequest) {
-        List<PasswordEntry> userEntries = passwordEntries.findByUsername(findRequest.getOwnerName());
+        List<PasswordEntry> userEntries = passwordEntries.findByUsername(findRequest.getUsername());
         if(userEntries.isEmpty()) return List.of();
         return userEntries;
     }

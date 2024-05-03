@@ -34,7 +34,7 @@ public class Mapper {
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
         AddCardResponse response = new AddCardResponse();
-        response.setBankName(cardInformation.getBankName());
+        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardNumberKey()));
         response.setId(cardInformation.getId());
         response.setCardType(cardInformation.getCardType());
         return response;
@@ -55,12 +55,12 @@ public class Mapper {
     }
     public static ViewCardResponse mapCard(CreditCardInformation cardInformation) throws Exception {
         ViewCardResponse response = new ViewCardResponse();
-        response.setUsername(cardInformation.getOwnerName());
+        response.setUsername(cardInformation.getUsername());
         response.setCardType(cardInformation.getCardType());
-        response.setPin(decrypt(cardInformation.getPin(), cardInformation.getPinKey()));
-        response.setNameOnCard(encrypt(cardInformation.getNameOnCard(), cardInformation.getCardNumberKey()));
-        response.setCardNumber(decrypt(cardInformation.getCardNumber(), cardInformation.getCardNumberKey()));
-        response.setBankName(cardInformation.getBankName());
+        response.setPin(decrypt(cardInformation.getPin(), cardInformation.getPinKey()/53));
+        response.setNameOnCard(decrypt(cardInformation.getNameOnCard(), cardInformation.getCardNumberKey()/56));
+        response.setCardNumber(decrypt(cardInformation.getCardNumber(), cardInformation.getCardNumberKey()/56));
+        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardNumberKey()/56));
         return response;
     }
 
@@ -74,16 +74,17 @@ public class Mapper {
 
 
     public static void map(CreditCardInformation cardInformation, AddCardRequest cardRequest) throws Exception {
+        cardInformation.setCardNumber(cardRequest.getCardNumber());
         setCardType(cardInformation);
         int cardKey = generateKey();
         int pinKey = generateKey();
-        cardInformation.setCardNumberKey(cardKey);
-        cardInformation.setPinKey(pinKey);
-        cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardNumberKey()));
-        cardInformation.setOwnerName(cardRequest.getUsername());
-        cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardNumberKey()));
-        cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardNumberKey()));
-        cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getPinKey()));
+        cardInformation.setCardNumberKey(cardKey*56);
+        cardInformation.setPinKey(pinKey*53);
+        cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardNumberKey()/56));
+        cardInformation.setUsername(cardRequest.getUsername());
+        cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardNumberKey()/56));
+        cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardNumberKey()/56));
+        cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getPinKey()/53));
     }
 
 

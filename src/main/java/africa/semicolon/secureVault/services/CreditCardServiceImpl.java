@@ -25,7 +25,7 @@ public class CreditCardServiceImpl implements CreditCardServices {
     @Override
     public AddCardResponse addCardInformation(AddCardRequest cardRequest){
         CreditCardInformation cardInformation = new CreditCardInformation();
-        if(!isValidCardNumber(cardRequest)) throw new InvalidCardException(cardRequest.getCardNumber()+ "is invalid");
+        if(!isValidCardNumber(cardRequest)) throw new InvalidCardException(cardRequest.getCardNumber()+ " is invalid");
         try {
             map(cardInformation, cardRequest);
         } catch (Exception e) {

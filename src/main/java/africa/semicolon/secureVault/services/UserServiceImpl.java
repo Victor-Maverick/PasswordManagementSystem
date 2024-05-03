@@ -106,9 +106,7 @@ public class UserServiceImpl implements UserService{
             if(user == null)throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
             validateUserLogin(user);
             CreditCardInformation cardInformation = cardServices.findById(viewRequest.getId());
-            User cardOwner = users.findByUsername(cardInformation.getOwnerName());
-            List<User> allowedUsers = cardOwner.getEmergencyContacts();
-            allowedUsers.forEach(user1->{if (!user1.getUsername().equalsIgnoreCase(user.getUsername()))throw new UserNotAllowedException("Not allowed");});
+            User cardOwner = users.findByUsername(cardInformation.getUsername());
         return cardServices.viewCardInformation(viewRequest);
     }
 
@@ -128,26 +126,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest) {
-            User owner = users.findByUsername(findRequest.getOwnerName());
-            if(owner == null)throw new UserNotFoundException(findRequest.getOwnerName()+" not found");
-
-            User user = users.findByUsername(findRequest.getViewerName());
-            if(user == null)throw new UserNotFoundException(findRequest.getViewerName()+" not found");
-            validateUserLogin(user);
-            List<User> allowedUsers = owner.getEmergencyContacts();
-            if (!user.getUsername().equalsIgnoreCase(owner.getUsername()) && !isUserAllowed(allowedUsers,user))
-                throw new UserNotAllowedException("Not allowed");
+            User owner = users.findByUsername(findRequest.getUsername());
+            if(owner == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
+            validateUserLogin(owner);
          return passwordEntryServices.findAllPasswordsFor(findRequest);
     }
 
-    private boolean isUserAllowed(List<User> userList, User user) {
-        for (User value : userList)
-            if (value.getUsername().equalsIgnoreCase(user.getUsername())) {
-                return true;
-            }
-
-        return false;
-    }
 
     @Override
     public String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest) {
@@ -164,10 +148,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest) {
-        User user = users.findByUsername(viewRequest.getUsername());
-        if (user == null) throw new UserNotFoundException(viewRequest.getUsername()+" not found");
-        validateUserLogin(user);
-        List<User> allowedContacts = user.getEmergencyContacts();
+        User owner = users.findByUsername(viewRequest.getAuthorName());
+        if (owner == null) throw new UserNotFoundException(viewRequest.getAuthorName()+" not found");
+        User viewer = users.findByUsername(viewRequest.getViewerName());
+        if (viewer == null) throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
+        validateUserLogin(viewer);
+        List<PasswordEntry> passwordEntries = viewer.getPasswordEntryList();
+        passwordEntries.forEach(passwordEntry -> {if (!passwordEntry.getId().equals(viewRequest.getId()))throw new UserNotFoundException("Not allowed to view this password");});
         return passwordEntryServices.viewPassword(viewRequest);
     }
 
@@ -200,6 +187,8 @@ public class UserServiceImpl implements UserService{
         users.save(receiver);
         return passwordShareMap(sender, receiver, passwordEntry);
     }
+
+
 
     private void validateRegistration(RegisterRequest registerRequest) {
             users.findAll().forEach(user -> {if (user.getUsername().equalsIgnoreCase(registerRequest.getUsername()))throw new UsernameExistsException(registerRequest.getUsername()+" exists");});

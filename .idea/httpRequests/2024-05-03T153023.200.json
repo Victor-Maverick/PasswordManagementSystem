@@ -1,0 +1,11 @@
+{
+  "data": {
+    "username": "Gagnon",
+    "cardNumber": "5199110726076091",
+    "cardType": "MASTER_CARD",
+    "pin": "1234",
+    "bankName": "uba",
+    "nameOnCard": "Msonter Orlu Victor"
+  },
+  "successful": true
+}
