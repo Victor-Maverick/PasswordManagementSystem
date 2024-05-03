@@ -5,6 +5,7 @@ import africa.semicolon.secureVault.data.models.CreditCardInformation;
 import africa.semicolon.secureVault.data.repositories.CardRepository;
 import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
 import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
+import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
 import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
 import africa.semicolon.secureVault.dtos.responses.AddCardResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewCardResponse;
@@ -45,8 +46,8 @@ public class CreditCardServiceImpl implements CreditCardServices {
     }
 
     @Override
-    public List<CreditCardInformation> findCardDetailsBelongingTo(String username) {
-        return cardRepository.findByUsername(username);
+    public List<CreditCardInformation> findCardDetailsBelongingTo(FindDetailsRequest request) {
+        return cardRepository.findByUsername(request.getUsername());
     }
 
     @Override

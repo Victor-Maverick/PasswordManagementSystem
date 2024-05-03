@@ -3,6 +3,7 @@ package africa.semicolon.secureVault.services;
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
 import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
 import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
+import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
 import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
 import africa.semicolon.secureVault.dtos.responses.AddCardResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewCardResponse;
@@ -17,7 +18,7 @@ public interface CreditCardServices {
 
     String deleteCardInformation(DeleteCardRequest deleteRequest);
 
-    List<CreditCardInformation> findCardDetailsBelongingTo(String username);
+    List<CreditCardInformation> findCardDetailsBelongingTo(FindDetailsRequest request);
 
     ViewCardResponse viewCardInformation(ViewCardRequest viewRequest);
 

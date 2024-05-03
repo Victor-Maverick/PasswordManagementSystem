@@ -80,11 +80,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<CreditCardInformation> findCardInformationFor(String username) {
-            User user = users.findByUsername(username);
-            if(user == null)throw new UserNotFoundException(username+" not found");
+    public List<CreditCardInformation> findCardInformationFor(FindDetailsRequest request) {
+            User user = users.findByUsername(request.getUsername());
+            if(user == null)throw new UserNotFoundException(request.getUsername()+" not found");
             validateUserLogin(user);
-        return cardServices.findCardDetailsBelongingTo(username);
+            return user.getCardInformationList();
     }
 
     @Override
@@ -105,8 +105,6 @@ public class UserServiceImpl implements UserService{
             User user = users.findByUsername(viewRequest.getViewerName());
             if(user == null)throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
             validateUserLogin(user);
-            CreditCardInformation cardInformation = cardServices.findById(viewRequest.getId());
-            User cardOwner = users.findByUsername(cardInformation.getUsername());
         return cardServices.viewCardInformation(viewRequest);
     }
 
@@ -126,10 +124,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest) {
-            User owner = users.findByUsername(findRequest.getUsername());
-            if(owner == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
-            validateUserLogin(owner);
-         return passwordEntryServices.findAllPasswordsFor(findRequest);
+            User user = users.findByUsername(findRequest.getUsername());
+            if(user == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
+            validateUserLogin(user);
+         return user.getPasswordEntryList();
     }
 
 

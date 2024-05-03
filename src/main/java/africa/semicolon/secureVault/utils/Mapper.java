@@ -42,8 +42,8 @@ public class Mapper {
 
     public static void map(PasswordEntry passwordEntry, PasswordEntryRequest passwordRequest) throws Exception {
         int passKey = generateKey();
-        passwordEntry.setPasswordKey(passKey);
-        passwordEntry.setPassword(encrypt(passwordRequest.getPassword(), passwordEntry.getPasswordKey()));
+        passwordEntry.setPasswordKey(passKey*47);
+        passwordEntry.setPassword(encrypt(passwordRequest.getPassword(), passwordEntry.getPasswordKey()/47));
         passwordEntry.setUsername(passwordRequest.getUsername());
         passwordEntry.setWebsite(passwordRequest.getWebsite());
     }

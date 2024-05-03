@@ -78,10 +78,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/view-cardsFor{username}")
-    public ResponseEntity<?> viewAllCardsFor(@PathVariable("username") String username){
+    @GetMapping("/view-cardsFor")
+    public ResponseEntity<?> viewAllCardsFor(@RequestBody FindDetailsRequest request){
         try{
-            var response = userService.findCardInformationFor(username);
+            var response = userService.findCardInformationFor(request);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
         }catch (SecureVaultAppExceptions e){
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);

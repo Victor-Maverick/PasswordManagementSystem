@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/FindDetailsRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CreditCardInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/CreditCardInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/EmergencyAccessRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/EmergencyAccessRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/FindUserEntriesRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/FindUserEntriesRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/ViewPasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/ViewPasswordRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/CreditCardServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/data/repositories/CardRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/data/repositories/CardRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/PasswordEntryServicesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/PasswordEntryServicesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/CreditCardServicesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/CreditCardServicesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/africa/semicolon/secureVault/services/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +64,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.EncryptDecrypt.executor": "Run",
+    "HTTP Request.generated-requests | #1.executor": "Run",
     "HTTP Request.generated-requests | #100.executor": "Run",
     "HTTP Request.generated-requests | #101.executor": "Run",
     "HTTP Request.generated-requests | #102.executor": "Run",
@@ -77,6 +72,7 @@
     "HTTP Request.generated-requests | #104.executor": "Run",
     "HTTP Request.generated-requests | #105.executor": "Run",
     "HTTP Request.generated-requests | #107.executor": "Run",
+    "HTTP Request.generated-requests | #2.executor": "Run",
     "HTTP Request.generated-requests | #54.executor": "Run",
     "HTTP Request.generated-requests | #97.executor": "Run",
     "HTTP Request.generated-requests | #99.executor": "Run",
@@ -135,17 +131,17 @@
       <recent name="africa.semicolon.secureVault.data.repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #107">
-    <configuration name="generated-requests | #103" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="103" requestIdentifier="#103" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #104" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="104" requestIdentifier="#104" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #105" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="105" requestIdentifier="#105" runType="Run single request">
+  <component name="RunManager" selected="HTTP Request.generated-requests | #3">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="generated-requests | #107" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="107" requestIdentifier="#107" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="secureVault" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -163,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #107" />
-        <item itemvalue="HTTP Request.generated-requests | #104" />
-        <item itemvalue="HTTP Request.generated-requests | #103" />
-        <item itemvalue="HTTP Request.generated-requests | #105" />
+        <item itemvalue="HTTP Request.generated-requests | #3" />
+        <item itemvalue="HTTP Request.generated-requests | #2" />
         <item itemvalue="Spring Boot.secureVault" />
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+        <item itemvalue="HTTP Request.generated-requests | #107" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +228,7 @@
       <workItem from="1714552130712" duration="1882000" />
       <workItem from="1714576349724" duration="12000" />
       <workItem from="1714638235484" duration="36130000" />
-      <workItem from="1714724298191" duration="16468000" />
+      <workItem from="1714724298191" duration="18429000" />
     </task>
     <servers />
   </component>

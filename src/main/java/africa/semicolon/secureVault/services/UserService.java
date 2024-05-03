@@ -22,7 +22,7 @@ public interface UserService {
 
     AddCardResponse addCardInformation(AddCardRequest cardRequest);
 
-    List<CreditCardInformation> findCardInformationFor(String username);
+    List<CreditCardInformation> findCardInformationFor(FindDetailsRequest request);
 
     String deleteCardInformation(DeleteCardRequest deleteRequest);
 

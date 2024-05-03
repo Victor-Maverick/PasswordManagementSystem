@@ -161,7 +161,9 @@ public class UserServiceTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         userService.addCardInformation(cardRequest);
-        assertEquals(1, userService.findCardInformationFor("username4").size());
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username4");
+        assertEquals(1, userService.findCardInformationFor(request).size());
     }
 
     @Test
@@ -199,12 +201,14 @@ public class UserServiceTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         var card = userService.addCardInformation(cardRequest);
-        assertEquals(1, userService.findCardInformationFor("username4").size());
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username4");
+        assertEquals(1, userService.findCardInformationFor(request).size());
         DeleteCardRequest deleteRequest = new DeleteCardRequest();
         deleteRequest.setUsername("username4");
         deleteRequest.setCardId(card.getId());
         userService.deleteCardInformation(deleteRequest);
-        assertEquals(0, userService.findCardInformationFor("username4").size());
+        assertEquals(0, userService.findCardInformationFor(request).size());
     }
 
     @Test
@@ -223,7 +227,9 @@ public class UserServiceTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         var card = userService.addCardInformation(cardRequest);
-        assertEquals(1, userService.findCardInformationFor("username4").size());
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username4");
+        assertEquals(1, userService.findCardInformationFor(request).size());
         DeleteCardRequest deleteRequest = new DeleteCardRequest();
         deleteRequest.setUsername("username4");
         deleteRequest.setCardId(card.getId());
@@ -252,7 +258,9 @@ public class UserServiceTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         var card = userService.addCardInformation(cardRequest);
-        assertEquals(1, userService.findCardInformationFor("username4").size());
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username4");
+        assertEquals(1, userService.findCardInformationFor(request).size());
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(card.getId());
         viewRequest.setViewerName("username4");
@@ -276,7 +284,9 @@ public class UserServiceTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         var card = userService.addCardInformation(cardRequest);
-        assertEquals(1, userService.findCardInformationFor("username4").size());
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username4");
+        assertEquals(1, userService.findCardInformationFor(request).size());
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(card.getId());
         viewRequest.setViewerName("username4");

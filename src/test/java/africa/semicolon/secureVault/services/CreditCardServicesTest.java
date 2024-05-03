@@ -3,6 +3,7 @@ package africa.semicolon.secureVault.services;
 import africa.semicolon.secureVault.data.repositories.CardRepository;
 import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
 import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
+import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
 import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
 import africa.semicolon.secureVault.exceptions.SecureVaultAppExceptions;
 import africa.semicolon.secureVault.secureVault;
@@ -90,8 +91,10 @@ public class CreditCardServicesTest {
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
         creditCardServices.addCardInformation(cardRequest);
+        FindDetailsRequest request = new FindDetailsRequest();
+        request.setUsername("username");
         assertEquals(1, cardRepository.count());
-        assertEquals(1, creditCardServices.findCardDetailsBelongingTo("username").size());
+        assertEquals(1, creditCardServices.findCardDetailsBelongingTo(request).size());
     }
 
     @Test
@@ -104,7 +107,7 @@ public class CreditCardServicesTest {
         var response = creditCardServices.addCardInformation(cardRequest);
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(response.getId());
-        viewRequest.setUsername("username");
+        viewRequest.setViewerName("username");
         var cardResponse = creditCardServices.viewCardInformation(viewRequest);
         assertEquals("12345", cardResponse.getPin());
 
