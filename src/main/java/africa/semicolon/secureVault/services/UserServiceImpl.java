@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
@@ -46,14 +47,13 @@ public class UserServiceImpl implements UserService{
             if (!decrypt(user.getPassword(), user.getIdNumber()/456).equals(loginRequest.getPassword()))throw new IncorrectPasswordException("wrong password");
             user.setLoggedIn(true);
             users.save(user);
-            List<Notification> notifications = user.getNotificationList();
-            List<Notification> newNotifications = new ArrayList<>();
-            notifications.forEach(notification -> {if (!notification.isSeen())newNotifications.add(notification);});
-            System.out.println(newNotifications);
+            System.out.println(displayUnseenNotifications(user));
             return mapLogin(user);
         }
 
-        @Override
+
+
+    @Override
         public String logout(LogoutRequest logoutRequest) {
             User user = users.findByUsername(logoutRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(logoutRequest.getUsername()+ " not found");
@@ -172,22 +172,12 @@ public class UserServiceImpl implements UserService{
         validateUserLogin(sender);
         User receiver = users.findByUsername(shareRequest.getReceiverUsername().toLowerCase());
         if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverUsername()+" not found");
-        CreditCardInformation cardInformation = cardServices.findById(shareRequest.getCardId());
-        List<CreditCardInformation> cardList = receiver.getCardInformationList();
-        cardList.add(cardInformation);
-        receiver.setCardInformationList(cardList);
-        NotificationRequest request = new NotificationRequest();
-        request.setMessage(sender.getUsername() + " sent you a card!!");
-        request.setDetailId(cardInformation.getId());
-        request.setRecipientName(receiver.getUsername());
-        var notificationResponse = notificationService.sendNotification(request);
-        Notification notification = notificationService.findById(notificationResponse.getNotificationId());
-        List<Notification>receiverNotifications = receiver.getNotificationList();
-        receiverNotifications.add(notification);
-        receiver.setNotificationList(receiverNotifications);
+        CreditCardInformation cardInformation = shareCardToReceiver(shareRequest, receiver);
+        notifyReceiver(sender, cardInformation, receiver);
         users.save(receiver);
         return shareCardMap(sender, receiver, cardInformation);
     }
+
 
     @Override
     public ShareDetailsResponse sharePassword(SharePasswordRequest shareRequest) {
@@ -196,15 +186,60 @@ public class UserServiceImpl implements UserService{
         validateUserLogin(sender);
         sender.getPasswordEntryList().forEach(passwordEntry -> {if (!passwordEntry.getId().equals(shareRequest.getPasswordId()))throw new PasswordNotFoundException("not found");});
         User receiver = users.findByUsername(shareRequest.getReceiverName().toLowerCase());
+        PasswordEntry passwordEntry = addPasswordToReceiver(shareRequest, receiver);
+        notifyReceiverForPassword(sender, passwordEntry, receiver);
+        users.save(receiver);
+        return passwordShareMap(sender, receiver, passwordEntry);
+    }
+
+    private void notifyReceiverForPassword(User sender, PasswordEntry passwordEntry, User receiver) {
+        NotificationRequest request = new NotificationRequest();
+        request.setMessage(sender.getUsername() + " sent you a password");
+        request.setDetailId(passwordEntry.getId());
+        request.setRecipientName(receiver.getUsername());
+        var notificationResponse = notificationService.sendNotification(request);
+        addNotificationTo(receiver, notificationResponse);
+    }
+
+    private void notifyReceiver(User sender, CreditCardInformation cardInformation, User receiver) {
+        NotificationRequest request = new NotificationRequest();
+        request.setMessage(sender.getUsername() + " sent you a card!!");
+        request.setDetailId(cardInformation.getId());
+        request.setRecipientName(receiver.getUsername());
+        var notificationResponse = notificationService.sendNotification(request);
+        addNotificationTo(receiver, notificationResponse);
+    }
+
+    private void addNotificationTo(User receiver, NotificationResponse notificationResponse) {
+        Notification notification = notificationService.findById(notificationResponse.getNotificationId());
+        List<Notification>receiverNotifications = receiver.getNotificationList();
+        receiverNotifications.add(notification);
+        receiver.setNotificationList(receiverNotifications);
+    }
+
+    private CreditCardInformation shareCardToReceiver(ShareCardDetailsRequest shareRequest, User receiver) {
+        CreditCardInformation cardInformation = cardServices.findById(shareRequest.getCardId());
+        List<CreditCardInformation> cardList = receiver.getCardInformationList();
+        cardList.add(cardInformation);
+        receiver.setCardInformationList(cardList);
+        return cardInformation;
+    }
+
+    private PasswordEntry addPasswordToReceiver(SharePasswordRequest shareRequest, User receiver) {
         if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverName()+" not found");
         PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(shareRequest.getPasswordId());
         List<PasswordEntry> passwordEntryList = receiver.getPasswordEntryList();
         passwordEntryList.add(passwordEntry);
         receiver.setPasswordEntryList(passwordEntryList);
-        users.save(receiver);
-        return passwordShareMap(sender, receiver, passwordEntry);
+        return passwordEntry;
     }
 
+    private static List<Notification> displayUnseenNotifications(User user) {
+        List<Notification> notifications = user.getNotificationList();
+        List<Notification> newNotifications = new ArrayList<>();
+        notifications.forEach(notification -> {if (!notification.isSeen())newNotifications.add(notification);});
+        return newNotifications;
+    }
 
 
     private void validateRegistration(RegisterRequest registerRequest) {
