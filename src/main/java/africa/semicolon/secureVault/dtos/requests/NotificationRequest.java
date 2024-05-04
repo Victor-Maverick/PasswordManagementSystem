@@ -8,5 +8,5 @@ import lombok.Setter;
 public class NotificationRequest {
     private String recipientName;
     private String message;
-    private String notificationId;
+    private String detailId;
 }

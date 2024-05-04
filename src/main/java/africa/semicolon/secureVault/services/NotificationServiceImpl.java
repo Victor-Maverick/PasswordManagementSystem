@@ -17,12 +17,12 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public NotificationResponse sendNotification(NotificationRequest request) {
         Notification notification = new Notification();
-        notification.setNotificationId(request.getNotificationId());
+        notification.setDetailId(request.getDetailId());
         notification.setMessage(request.getMessage());
         notification.setTimeStamp(LocalDateTime.now());
         notifications.save(notification);
         NotificationResponse response = new NotificationResponse();
-        response.setNotificationId(request.getNotificationId());
+        response.setNotificationId(notification.getId());
         return response;
     }
 

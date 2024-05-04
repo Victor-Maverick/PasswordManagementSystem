@@ -176,10 +176,9 @@ public class UserServiceImpl implements UserService{
         List<CreditCardInformation> cardList = receiver.getCardInformationList();
         cardList.add(cardInformation);
         receiver.setCardInformationList(cardList);
-        users.save(receiver);
         NotificationRequest request = new NotificationRequest();
         request.setMessage(sender.getUsername() + " sent you a card!!");
-        request.setNotificationId(cardInformation.getId());
+        request.setDetailId(cardInformation.getId());
         request.setRecipientName(receiver.getUsername());
         var notificationResponse = notificationService.sendNotification(request);
         Notification notification = notificationService.findById(notificationResponse.getNotificationId());
