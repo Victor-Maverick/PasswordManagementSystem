@@ -25,7 +25,7 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
     private final PasswordEntries passwordEntries;
     @Override
     public PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest) {
-        if (!isWebsiteValid(passwordRequest.getWebsite()))throw new SecureVaultAppExceptions(passwordRequest.getWebsite()+" not valid");
+        if (!(isEmailValid(passwordRequest.getWebsite()) || isWebsiteValid(passwordRequest.getWebsite())))throw new SecureVaultAppExceptions(passwordRequest.getWebsite()+" not valid");
         PasswordEntry passwordEntry = new PasswordEntry();
         try {
             map(passwordEntry,passwordRequest);

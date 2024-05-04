@@ -19,8 +19,8 @@ public class User {
     @DBRef
     private List<PasswordEntry> passwordEntryList = new ArrayList<>();
     private LocalDateTime dateCreated = LocalDateTime.now();
-    private List<LocalDateTime> dateAccessed;
-    private List<LocalDateTime> accessExpiryDate;
+    @DBRef
+    private List<Notification> notificationList = new ArrayList<>();
     @DBRef
     private  List<CreditCardInformation> cardInformationList = new ArrayList<>();
 }

@@ -1,5 +1,56 @@
 POST http://localhost:8804/api/add-password
 Content-Type: application/json
+Content-Length: 91
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "hunchogrey73@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T114711.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "www.google.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T114645.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 85
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "www.facebook.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T114632.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
 Content-Length: 85
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
 Accept-Encoding: br, deflate, gzip, x-gzip
@@ -767,57 +818,6 @@ Accept: */*
 }
 
 <> 2024-05-03T233156.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "victor@gmail.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T233119.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 85
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.google.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T233017.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 85
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.google.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T232809.400.json
 
 ###
 
