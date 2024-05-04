@@ -33,6 +33,7 @@ public interface UserService {
     List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest);
 
     String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest);
+    String deleteNotification(DeleteNotificationRequest deleteNotificationRequest);
 
     ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest);
     ShareDetailsResponse shareCardInformation(ShareCardDetailsRequest shareDetails);

@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
@@ -79,12 +78,17 @@ public class UserServiceImpl implements UserService{
          User user = users.findByUsername(cardRequest.getUsername().toLowerCase());
          if (user == null)throw new UserNotFoundException(cardRequest.getUsername()+" not found");
          validateUserLogin(user);
-         AddCardResponse response = cardServices.addCardInformation(cardRequest);
+        AddCardResponse response = addCardToUser(cardRequest, user);
+        users.save(user);
+        return response;
+    }
+
+    private AddCardResponse addCardToUser(AddCardRequest cardRequest, User user) {
+        AddCardResponse response = cardServices.addCardInformation(cardRequest);
         CreditCardInformation cardInformation = cardServices.findById(response.getId());
         List<CreditCardInformation> cardList = user.getCardInformationList();
         cardList.add(cardInformation);
         user.setCardInformationList(cardList);
-        users.save(user);
         return response;
     }
 
@@ -154,6 +158,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public String deleteNotification(DeleteNotificationRequest request) {
+            User user = users.findByUsername(request.getUsername().toLowerCase());
+            if (user == null) throw new UserNotFoundException(request.getUsername()+" not found");
+            validateUserLogin(user);
+            List<Notification> notificationList = user.getNotificationList();
+            notificationList.removeIf(notification -> notification.getId().equals(request.getNotificationId()));
+            user.setNotificationList(notificationList);
+            users.save(user);
+            notificationService.deleteNotification(request);
+        return "delete success";
+    }
+
+    @Override
     public ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest) {
         User owner = users.findByUsername(viewRequest.getAuthorName().toLowerCase());
         if (owner == null) throw new UserNotFoundException(viewRequest.getAuthorName()+" not found");
@@ -200,6 +217,8 @@ public class UserServiceImpl implements UserService{
         var notificationResponse = notificationService.sendNotification(request);
         addNotificationTo(receiver, notificationResponse);
     }
+
+
 
     private void notifyReceiver(User sender, CreditCardInformation cardInformation, User receiver) {
         NotificationRequest request = new NotificationRequest();

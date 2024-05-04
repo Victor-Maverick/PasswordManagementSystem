@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class DeleteNotificationRequest {
-    private String notificationId;
+public class FindNotificationRequest {
     private String username;
 }
