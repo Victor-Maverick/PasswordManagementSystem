@@ -5,7 +5,9 @@ import africa.semicolon.secureVault.data.repositories.Notifications;
 import africa.semicolon.secureVault.dtos.requests.DeleteNotificationRequest;
 import africa.semicolon.secureVault.dtos.requests.FindNotificationRequest;
 import africa.semicolon.secureVault.dtos.requests.NotificationRequest;
+import africa.semicolon.secureVault.dtos.requests.ViewNotificationRequest;
 import africa.semicolon.secureVault.dtos.responses.NotificationResponse;
+import africa.semicolon.secureVault.dtos.responses.ViewNotificationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +32,10 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public void deleteNotification(DeleteNotificationRequest request) {
+    public String deleteNotification(DeleteNotificationRequest request) {
         Notification notification = notifications.findNotificationById(request.getNotificationId());
         notifications.delete(notification);
+        return "delete success";
     }
 
     @Override
@@ -45,6 +48,16 @@ public class NotificationServiceImpl implements NotificationService {
         List<Notification> notificationList = notifications.findByRecipientName(request.getUsername());
         if(notificationList.isEmpty())return List.of();
         return notificationList;
+    }
+
+    @Override
+    public ViewNotificationResponse viewNotification(ViewNotificationRequest request) {
+        Notification notification = notifications.findNotificationById(request.getNotificationId());
+        ViewNotificationResponse response = new ViewNotificationResponse();
+        response.setDetailId(notification.getDetailId());
+        response.setTimeStamp(notification.getTimeStamp());
+        response.setMessage(notification.getMessage());
+        return response;
     }
 
 

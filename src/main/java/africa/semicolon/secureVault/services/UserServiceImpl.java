@@ -166,8 +166,7 @@ public class UserServiceImpl implements UserService{
             notificationList.removeIf(notification -> notification.getId().equals(request.getNotificationId()));
             user.setNotificationList(notificationList);
             users.save(user);
-            notificationService.deleteNotification(request);
-        return "delete success";
+            return notificationService.deleteNotification(request);
     }
 
     @Override
