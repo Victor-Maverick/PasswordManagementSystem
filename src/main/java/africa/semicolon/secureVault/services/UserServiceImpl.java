@@ -170,6 +170,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public ViewNotificationResponse viewNotification(ViewNotificationRequest viewNotificationRequest) {
+            User user = users.findByUsername(viewNotificationRequest.getUsername().toLowerCase());
+            if(user == null)throw new UserNotFoundException(viewNotificationRequest.getUsername()+" not found");
+            validateUserLogin(user);
+        return notificationService.viewNotification(viewNotificationRequest);
+    }
+
+    @Override
+    public List<Notification> findNotificationsFor(FindNotificationRequest findRequest) {
+            User user = users.findByUsername(findRequest.getUsername().toLowerCase());
+            if(user == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
+            validateUserLogin(user);
+        return notificationService.viewAllNotificationsFor(findRequest);
+    }
+
+    @Override
     public ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest) {
         User owner = users.findByUsername(viewRequest.getAuthorName().toLowerCase());
         if (owner == null) throw new UserNotFoundException(viewRequest.getAuthorName()+" not found");

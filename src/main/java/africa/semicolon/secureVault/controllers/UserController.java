@@ -1,5 +1,6 @@
 package africa.semicolon.secureVault.controllers;
 
+import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.*;
@@ -153,6 +154,36 @@ public class UserController {
         try{
             var response = userService.sharePassword(request);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/view-notification")
+    public ResponseEntity<?> viewNotification(@RequestBody ViewNotificationRequest viewRequest){
+        try{
+            ViewNotificationResponse response = userService.viewNotification(viewRequest);
+            return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteNotification(@RequestBody DeleteNotificationRequest deleteRequest){
+        try{
+            var response = userService.deleteNotification(deleteRequest);
+            return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> viewAllNotifications(@RequestBody FindNotificationRequest findRequest){
+        try{
+            List<Notification> notifications = userService.findNotificationsFor(findRequest);
+            return new ResponseEntity<>(new ApiResponse(true, notifications), OK);
         }catch (SecureVaultAppExceptions e){
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
         }

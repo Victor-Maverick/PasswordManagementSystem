@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/DeleteNotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/requests/DeleteNotificationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +237,7 @@
       <workItem from="1714724298191" duration="20296000" />
       <workItem from="1714756938939" duration="9247000" />
       <workItem from="1714807589798" duration="18757000" />
-      <workItem from="1714835847051" duration="5769000" />
+      <workItem from="1714835847051" duration="7934000" />
     </task>
     <servers />
   </component>

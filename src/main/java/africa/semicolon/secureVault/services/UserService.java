@@ -1,6 +1,7 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
+import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.*;
@@ -34,6 +35,8 @@ public interface UserService {
 
     String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest);
     String deleteNotification(DeleteNotificationRequest deleteNotificationRequest);
+    ViewNotificationResponse viewNotification(ViewNotificationRequest viewNotificationRequest);
+    List<Notification> findNotificationsFor(FindNotificationRequest findRequest);
 
     ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest);
     ShareDetailsResponse shareCardInformation(ShareCardDetailsRequest shareDetails);
