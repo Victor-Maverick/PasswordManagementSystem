@@ -1,6 +1,7 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
+import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.models.User;
 import africa.semicolon.secureVault.data.repositories.Users;
@@ -10,6 +11,7 @@ import africa.semicolon.secureVault.exceptions.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
@@ -21,6 +23,8 @@ public class UserServiceImpl implements UserService{
         private final Users users;
         private final CreditCardServiceImpl cardServices;
         private final PasswordEntryServices passwordEntryServices;
+        private final NotificationService notificationService;
+
         @Override
         public RegisterResponse register(RegisterRequest registerRequest) {
             validateRegistration(registerRequest);
@@ -42,6 +46,10 @@ public class UserServiceImpl implements UserService{
             if (!decrypt(user.getPassword(), user.getIdNumber()/456).equals(loginRequest.getPassword()))throw new IncorrectPasswordException("wrong password");
             user.setLoggedIn(true);
             users.save(user);
+            List<Notification> notifications = user.getNotificationList();
+            List<Notification> newNotifications = new ArrayList<>();
+            notifications.forEach(notification -> {if (!notification.isSeen())newNotifications.add(notification);});
+            System.out.println(newNotifications);
             return mapLogin(user);
         }
 
@@ -168,6 +176,16 @@ public class UserServiceImpl implements UserService{
         List<CreditCardInformation> cardList = receiver.getCardInformationList();
         cardList.add(cardInformation);
         receiver.setCardInformationList(cardList);
+        users.save(receiver);
+        NotificationRequest request = new NotificationRequest();
+        request.setMessage(sender.getUsername() + " sent you a card!!");
+        request.setNotificationId(cardInformation.getId());
+        request.setRecipientName(receiver.getUsername());
+        var notificationResponse = notificationService.sendNotification(request);
+        Notification notification = notificationService.findById(notificationResponse.getNotificationId());
+        List<Notification>receiverNotifications = receiver.getNotificationList();
+        receiverNotifications.add(notification);
+        receiver.setNotificationList(receiverNotifications);
         users.save(receiver);
         return shareCardMap(sender, receiver, cardInformation);
     }

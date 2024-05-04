@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54ef0492-f6b8-428f-b042-7c515493d0ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/repositories/Notifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T232809.400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233017.400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233119.400.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/dtos/responses/NotificationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233156.400.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233542.400.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233700.400.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233724.201.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-05-03T233807.200.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/data/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/PasswordEntryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/NotificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/services/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/africa/semicolon/secureVault/utils/Mapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -78,7 +81,10 @@
     "HTTP Request.generated-requests | #15.executor": "Run",
     "HTTP Request.generated-requests | #16.executor": "Run",
     "HTTP Request.generated-requests | #17.executor": "Run",
+    "HTTP Request.generated-requests | #18.executor": "Run",
+    "HTTP Request.generated-requests | #19.executor": "Run",
     "HTTP Request.generated-requests | #2.executor": "Run",
+    "HTTP Request.generated-requests | #20.executor": "Run",
     "HTTP Request.generated-requests | #3.executor": "Run",
     "HTTP Request.generated-requests | #4.executor": "Run",
     "HTTP Request.generated-requests | #5.executor": "Run",
@@ -144,17 +150,17 @@
       <recent name="africa.semicolon.secureVault.data.repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #17">
+  <component name="RunManager" selected="HTTP Request.generated-requests | #20">
+    <configuration name="generated-requests | #10" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="10" requestIdentifier="#10" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="generated-requests | #11" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="11" requestIdentifier="#11" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #14" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="14" requestIdentifier="#14" runType="Run single request">
+    <configuration name="generated-requests | #19" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="19" requestIdentifier="#19" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #16" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="16" requestIdentifier="#16" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #17" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="17" requestIdentifier="#17" runType="Run single request">
+    <configuration name="generated-requests | #20" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="20" requestIdentifier="#20" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="secureVault" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -172,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #17" />
-        <item itemvalue="Spring Boot.secureVault" />
-        <item itemvalue="HTTP Request.generated-requests | #16" />
-        <item itemvalue="HTTP Request.generated-requests | #14" />
+        <item itemvalue="HTTP Request.generated-requests | #20" />
+        <item itemvalue="HTTP Request.generated-requests | #19" />
         <item itemvalue="HTTP Request.generated-requests | #11" />
+        <item itemvalue="HTTP Request.generated-requests | #10" />
+        <item itemvalue="Spring Boot.secureVault" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +249,7 @@
       <workItem from="1714638235484" duration="36130000" />
       <workItem from="1714724298191" duration="20296000" />
       <workItem from="1714756938939" duration="9247000" />
-      <workItem from="1714807589798" duration="12063000" />
+      <workItem from="1714807589798" duration="18246000" />
     </task>
     <servers />
   </component>

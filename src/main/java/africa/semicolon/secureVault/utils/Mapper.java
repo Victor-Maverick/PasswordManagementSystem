@@ -36,7 +36,7 @@ public class Mapper {
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
         AddCardResponse response = new AddCardResponse();
-        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardId()));
+        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardId()/56));
         response.setId(cardInformation.getId());
         response.setCardType(cardInformation.getCardType());
         return response;
