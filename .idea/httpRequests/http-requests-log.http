@@ -1,3 +1,317 @@
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 85
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "www.facebook.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T114050.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 85
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "www.facebook.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T113911.400.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 85
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "www.facebook.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T113733.400.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 94
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "m.victor@semicolon.africa",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T113100.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 92
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "victormsonter@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T112012.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 92
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "victormsonter@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T105740.201.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 92
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "victormsonter@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T105517.400.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 92
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "victormsonter@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T105403.400.json
+
+###
+
+POST http://localhost:8804/api/add-password
+Content-Type: application/json
+Content-Length: 92
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "mson",
+  "website": "victormsonter@gmail.com",
+  "password": "mypassword"
+}
+
+<> 2024-05-04T095401.400.json
+
+###
+
+GET http://localhost:8800/api/view-allPasswordsFor
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 24
+
+{
+  "username": "mSon"
+}
+
+<> 2024-05-04T093827.200.json
+
+###
+
+GET http://localhost:8800/api/view-allPasswordsFor
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 25
+
+{
+  "username": "grace"
+}
+
+<> 2024-05-04T093506.200.json
+
+###
+
+POST http://localhost:8800/api/share-password
+Content-Type: application/json
+Content-Length: 97
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "passwordId": "6635eefe1042426eeaaf21dd",
+  "senderName": "mson",
+  "receiverName": "grace"
+}
+
+<> 2024-05-04T093456.200.json
+
+###
+
+GET http://localhost:8800/api/view-allPasswordsFor
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 25
+
+{
+  "username": "grace"
+}
+
+<> 2024-05-04T093408.200.json
+
+###
+
+GET http://localhost:8800/api/view-allPasswordsFor
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 25
+
+{
+  "username": "grace"
+}
+
+<> 2024-05-04T092022.200.json
+
+###
+
+POST http://localhost:8800/api/share-password
+Content-Type: application/json
+Content-Length: 97
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "passwordId": "6635eefe1042426eeaaf21dd",
+  "senderName": "mson",
+  "receiverName": "grace"
+}
+
+<> 2024-05-04T091924.200.json
+
+###
+
+POST http://localhost:8800/api/sign-in
+Content-Type: application/json
+Content-Length: 51
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "grace",
+  "password": "password"
+}
+
+<> 2024-05-04T091918.200.json
+
+###
+
+GET http://localhost:8800/api/view-password
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 87
+
+{
+  "id": "6635eefe1042426eeaaf21dd",
+  "authorName": "mson",
+  "viewerName": "grace"
+}
+
+<> 2024-05-04T091852.400.json
+
+###
+
+POST http://localhost:8800/api/share-password
+Content-Type: application/json
+Content-Length: 97
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "passwordId": "6635eefe1042426eeaaf21dd",
+  "senderName": "mson",
+  "receiverName": "grace"
+}
+
+<> 2024-05-04T091748.200.json
+
+###
+
+POST http://localhost:8800/api/add-password
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "MsOn",
+  "website": "www.google.com",
+  "password": "googlepass"
+}
+
+<> 2024-05-04T091702.201.json
+
+###
+
 POST http://localhost:8800/api/sign-in
 Content-Type: application/json
 Content-Length: 50
@@ -504,317 +818,6 @@ Accept: */*
 }
 
 <> 2024-05-03T232809.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 85
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.google.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T232047.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.facebook.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T231920.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.facebook.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T231827.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.facebook.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T231628.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.facebook.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T231506.400.json
-
-###
-
-POST http://localhost:8800/api/add-password
-Content-Type: application/json
-Content-Length: 87
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "website": "www.facebook.com",
-  "password": "passwordss"
-}
-
-<> 2024-05-03T231339.400.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 67
-
-{
-  "id": "663500957017433a7d43b045",
-  "viewerName": "GReyhound"
-}
-
-<> 2024-05-03T175321.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardsFor
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 29
-
-{
-  "username": "GReyhound"
-}
-
-<> 2024-05-03T164530.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardsFor
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 25
-
-{
-  "username": "Greyy"
-}
-
-<> 2024-05-03T164223.400.json
-
-###
-
-GET http://localhost:8800/api/view-cardsFor
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 29
-
-{
-  "username": "GReyhound"
-}
-
-<> 2024-05-03T164128.200.json
-
-###
-
-POST http://localhost:8800/api/share-card
-Content-Type: application/json
-Content-Length: 107
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "cardId": "663500957017433a7d43b045",
-  "senderUsername": "Gagnon",
-  "receiverUsername": "GReyhound"
-}
-
-<> 2024-05-03T162200.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "663500957017433a7d43b045",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T162012.200.json
-
-###
-
-POST http://localhost:8800/api/add-cardInfo
-Content-Type: application/json
-Content-Length: 144
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "username": "Gagnon",
-  "pin": "1234",
-  "cardNumber": "5199110726076091",
-  "bankName": "WellsFar",
-  "nameOnCard": "Msonter Orlu Victor"
-}
-
-<> 2024-05-03T161949.201.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T161927.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T161916.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T161509.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T161447.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T161112.200.json
-
-###
-
-GET http://localhost:8800/api/view-cardInfo
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 64
-
-{
-  "id": "6634fd2785ae3056e3acc790",
-  "viewerName": "Gagnon"
-}
-
-<> 2024-05-03T160935.200.json
 
 ###
 

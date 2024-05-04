@@ -25,7 +25,7 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
     private final PasswordEntries passwordEntries;
     @Override
     public PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest) {
-        //validate(passwordRequest);
+        if (!isWebsiteValid(passwordRequest.getWebsite()))throw new SecureVaultAppExceptions(passwordRequest.getWebsite()+" not valid");
         PasswordEntry passwordEntry = new PasswordEntry();
         try {
             map(passwordEntry,passwordRequest);
@@ -36,22 +36,19 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
         return map(passwordEntry);
     }
 
+    private boolean isWebsiteValid(String website) {
+        website = website.toLowerCase();
+        String emailRegex =  "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})$";
+        return website.matches(emailRegex);
+    }
+
     public static boolean isEmailValid(String email) {
         email = email.replaceAll(" ", "");
         email = email.toLowerCase();
-        String regex = "([a-z]\\.)?[a-z][A-z]+@(enum|semicolon|learnspace|native).africa";
-        return email.matches(regex);
+        String emailRegex =  "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
     }
 
-    private void validate(PasswordEntryRequest passwordRequest) {
-        String website = passwordRequest.getWebsite();
-        website = website.replaceAll(" ", "");
-        website = website.toLowerCase();
-        passwordRequest.setWebsite(website);
-        String regex = "(https?://)?(www\\.)?([a-zA-Z]+([0-9]*)?\\.)?[a-zA-Z0-9]+.[a-zA-Z]{2,}";
-        String emailRegex = "([a-z]\\.)?[a-z][A-Z]+@(gmail|yahoo|outlook|hotmail|semicolon|enum|learnspace|native)\\.(com|africa)";
-        if (!(passwordRequest.getWebsite().matches(regex))|| !(passwordRequest.getWebsite().matches(emailRegex)))throw new InvalidInputException(passwordRequest.getWebsite()+" not valid");
-    }
 
     @Override
     public String deletePassword(DeletePasswordEntryRequest deleteRequest) {

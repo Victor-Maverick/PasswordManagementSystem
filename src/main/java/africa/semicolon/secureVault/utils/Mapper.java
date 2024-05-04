@@ -36,7 +36,7 @@ public class Mapper {
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
         AddCardResponse response = new AddCardResponse();
-        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardNumberKey()));
+        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardId()));
         response.setId(cardInformation.getId());
         response.setCardType(cardInformation.getCardType());
         return response;
@@ -44,8 +44,8 @@ public class Mapper {
 
     public static void map(PasswordEntry passwordEntry, PasswordEntryRequest passwordRequest) throws Exception {
         int passKey = generateKey();
-        passwordEntry.setPasswordKey(passKey*47);
-        passwordEntry.setPassword(encrypt(passwordRequest.getPassword(), passwordEntry.getPasswordKey()/47));
+        passwordEntry.setPasswordId(passKey*47);
+        passwordEntry.setPassword(encrypt(passwordRequest.getPassword(), passwordEntry.getPasswordId()/47));
         passwordEntry.setUsername(passwordRequest.getUsername());
         passwordEntry.setWebsite(passwordRequest.getWebsite());
     }
@@ -59,10 +59,10 @@ public class Mapper {
         ViewCardResponse response = new ViewCardResponse();
         response.setUsername(cardInformation.getUsername());
         response.setCardType(cardInformation.getCardType());
-        response.setPin(decrypt(cardInformation.getPin(), cardInformation.getPinKey()/53));
-        response.setNameOnCard(decrypt(cardInformation.getNameOnCard(), cardInformation.getCardNumberKey()/56));
-        response.setCardNumber(decrypt(cardInformation.getCardNumber(), cardInformation.getCardNumberKey()/56));
-        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardNumberKey()/56));
+        response.setPin(decrypt(cardInformation.getPin(), cardInformation.getIdNumber()/53));
+        response.setNameOnCard(decrypt(cardInformation.getNameOnCard(), cardInformation.getCardId()/56));
+        response.setCardNumber(decrypt(cardInformation.getCardNumber(), cardInformation.getCardId()/56));
+        response.setBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardId()/56));
         return response;
     }
 
@@ -70,7 +70,7 @@ public class Mapper {
         ViewPasswordResponse response = new ViewPasswordResponse();
         response.setId(passwordEntry.getId());
         response.setWebsite(passwordEntry.getWebsite());
-        response.setPassword(decrypt(passwordEntry.getPassword(), passwordEntry.getPasswordKey()/47));
+        response.setPassword(decrypt(passwordEntry.getPassword(), passwordEntry.getPasswordId()/47));
         return response;
     }
 
@@ -80,13 +80,13 @@ public class Mapper {
         setCardType(cardInformation);
         int cardKey = generateKey();
         int pinKey = generateKey();
-        cardInformation.setCardNumberKey(cardKey*56);
-        cardInformation.setPinKey(pinKey*53);
-        cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardNumberKey()/56));
+        cardInformation.setCardId(cardKey*56);
+        cardInformation.setIdNumber(pinKey*53);
+        cardInformation.setCardNumber(encrypt(cardRequest.getCardNumber(), cardInformation.getCardId()/56));
         cardInformation.setUsername(cardRequest.getUsername());
-        cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardNumberKey()/56));
-        cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardNumberKey()/56));
-        cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getPinKey()/53));
+        cardInformation.setNameOnCard(encrypt(cardRequest.getNameOnCard(), cardInformation.getCardId()/56));
+        cardInformation.setBankName(encrypt(cardRequest.getBankName(), cardInformation.getCardId()/56));
+        cardInformation.setPin(encrypt(cardRequest.getPin(), cardInformation.getIdNumber()/53));
     }
 
 
