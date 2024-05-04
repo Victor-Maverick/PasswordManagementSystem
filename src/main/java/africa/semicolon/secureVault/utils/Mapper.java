@@ -22,8 +22,10 @@ public class Mapper {
         return response;
     }
     public static void map(User user, RegisterRequest registerRequest){
-        user.setUsername(registerRequest.getUsername());
-        user.setPassword(registerRequest.getPassword());
+        int id = generateKey();
+        user.setIdNumber(id * 456);
+        user.setUsername(registerRequest.getUsername().toLowerCase());
+        user.setPassword(encrypt(registerRequest.getPassword(), user.getIdNumber()/456));
     }
     public static LoginResponse mapLogin(User user){
         LoginResponse response = new LoginResponse();
@@ -68,7 +70,7 @@ public class Mapper {
         ViewPasswordResponse response = new ViewPasswordResponse();
         response.setId(passwordEntry.getId());
         response.setWebsite(passwordEntry.getWebsite());
-        response.setPassword(decrypt(passwordEntry.getPassword(), passwordEntry.getPasswordKey()));
+        response.setPassword(decrypt(passwordEntry.getPassword(), passwordEntry.getPasswordKey()/47));
         return response;
     }
 

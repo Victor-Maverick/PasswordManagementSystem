@@ -1,4 +1,0 @@
-{
-  "data": "Cannot invoke \"String.charAt(int)\" because the return value of \"africa.semicolon.secureVault.data.models.CreditCardInformation.getCardNumber()\" is null",
-  "successful": false
-}

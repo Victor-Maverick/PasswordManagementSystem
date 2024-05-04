@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
 import static africa.semicolon.secureVault.utils.Mapper.*;
 
 @Service
@@ -36,9 +37,9 @@ public class UserServiceImpl implements UserService{
 
         @Override
         public LoginResponse login(LoginRequest loginRequest) {
-            User user = users.findByUsername(loginRequest.getUsername());
+            User user = users.findByUsername(loginRequest.getUsername().toLowerCase());
             if (user == null)throw new UserNotFoundException(loginRequest.getUsername()+" not found");
-            if (!user.getPassword().equals(loginRequest.getPassword()))throw new IncorrectPasswordException("wrong password");
+            if (!decrypt(user.getPassword(), user.getIdNumber()/456).equals(loginRequest.getPassword()))throw new IncorrectPasswordException("wrong password");
             user.setLoggedIn(true);
             users.save(user);
             return mapLogin(user);
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService{
 
         @Override
         public String logout(LogoutRequest logoutRequest) {
-            User user = users.findByUsername(logoutRequest.getUsername());
+            User user = users.findByUsername(logoutRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(logoutRequest.getUsername()+ " not found");
             user.setLoggedIn(false);
             users.save(user);
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
         public String deleteUser(DeleteUserRequest deleteUserRequest) {
-            User user = users.findByUsername(deleteUserRequest.getUsername());
+            User user = users.findByUsername(deleteUserRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(deleteUserRequest.getUsername()+ " not found");
             validateUserLogin(user);
             users.delete(user);
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AddCardResponse addCardInformation(AddCardRequest cardRequest) {
-         User user = users.findByUsername(cardRequest.getUsername());
+         User user = users.findByUsername(cardRequest.getUsername().toLowerCase());
          if (user == null)throw new UserNotFoundException(cardRequest.getUsername()+" not found");
          validateUserLogin(user);
          AddCardResponse response = cardServices.addCardInformation(cardRequest);
@@ -81,7 +82,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<CreditCardInformation> findCardInformationFor(FindDetailsRequest request) {
-            User user = users.findByUsername(request.getUsername());
+            User user = users.findByUsername(request.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(request.getUsername()+" not found");
             validateUserLogin(user);
             return user.getCardInformationList();
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String deleteCardInformation(DeleteCardRequest deleteRequest) {
-            User user = users.findByUsername(deleteRequest.getUsername());
+            User user = users.findByUsername(deleteRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(deleteRequest.getUsername()+ " not found");
             validateUserLogin(user);
         CreditCardInformation cardInformation = cardServices.findById(deleteRequest.getCardId());
@@ -102,7 +103,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ViewCardResponse viewCardDetails(ViewCardRequest viewRequest) {
-            User user = users.findByUsername(viewRequest.getViewerName());
+            User user = users.findByUsername(viewRequest.getViewerName().toLowerCase());
             if(user == null)throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
             validateUserLogin(user);
         return cardServices.viewCardInformation(viewRequest);
@@ -110,7 +111,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest) {
-            User user = users.findByUsername(passwordRequest.getUsername());
+            User user = users.findByUsername(passwordRequest.getUsername().toLowerCase());
             if (user == null) throw new UserNotFoundException(passwordRequest.getUsername()+" not found");
             validateUserLogin(user);
             var response = passwordEntryServices.addPasswordEntry(passwordRequest);
@@ -124,7 +125,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest) {
-            User user = users.findByUsername(findRequest.getUsername());
+            User user = users.findByUsername(findRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
             validateUserLogin(user);
          return user.getPasswordEntryList();
@@ -133,7 +134,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest) {
-        User user = users.findByUsername(deleteRequest.getUsername());
+        User user = users.findByUsername(deleteRequest.getUsername().toLowerCase());
         if (user == null) throw new UserNotFoundException(deleteRequest.getUsername()+" not found");
         validateUserLogin(user);
         var response = passwordEntryServices.deletePassword(deleteRequest);
@@ -146,9 +147,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ViewPasswordResponse viewPassword(ViewPasswordRequest viewRequest) {
-        User owner = users.findByUsername(viewRequest.getAuthorName());
+        User owner = users.findByUsername(viewRequest.getAuthorName().toLowerCase());
         if (owner == null) throw new UserNotFoundException(viewRequest.getAuthorName()+" not found");
-        User viewer = users.findByUsername(viewRequest.getViewerName());
+        User viewer = users.findByUsername(viewRequest.getViewerName().toLowerCase());
         if (viewer == null) throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
         validateUserLogin(viewer);
         List<PasswordEntry> passwordEntries = viewer.getPasswordEntryList();
@@ -158,10 +159,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ShareDetailsResponse shareCardInformation(ShareCardDetailsRequest shareRequest) {
-        User sender = users.findByUsername(shareRequest.getSenderUsername());
+        User sender = users.findByUsername(shareRequest.getSenderUsername().toLowerCase());
         if(sender == null) throw new UserNotFoundException(shareRequest.getSenderUsername()+" not found");
         validateUserLogin(sender);
-        User receiver = users.findByUsername(shareRequest.getReceiverUsername());
+        User receiver = users.findByUsername(shareRequest.getReceiverUsername().toLowerCase());
         if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverUsername()+" not found");
         CreditCardInformation cardInformation = cardServices.findById(shareRequest.getCardId());
         List<CreditCardInformation> cardList = receiver.getCardInformationList();
@@ -173,10 +174,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ShareDetailsResponse sharePassword(SharePasswordRequest shareRequest) {
-        User sender = users.findByUsername(shareRequest.getSenderName());
+        User sender = users.findByUsername(shareRequest.getSenderName().toLowerCase());
         if(sender == null) throw new UserNotFoundException(shareRequest.getSenderName()+" not found");
         validateUserLogin(sender);
-        User receiver = users.findByUsername(shareRequest.getReceiverName());
+        sender.getPasswordEntryList().forEach(passwordEntry -> {if (!passwordEntry.getId().equals(shareRequest.getPasswordId()))throw new PasswordNotFoundException("not found");});
+        User receiver = users.findByUsername(shareRequest.getReceiverName().toLowerCase());
         if(receiver == null) throw new UserNotFoundException(shareRequest.getReceiverName()+" not found");
         PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(shareRequest.getPasswordId());
         List<PasswordEntry> passwordEntryList = receiver.getPasswordEntryList();
