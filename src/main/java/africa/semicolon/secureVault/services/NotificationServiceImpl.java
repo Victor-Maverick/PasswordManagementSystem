@@ -53,6 +53,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public ViewNotificationResponse viewNotification(ViewNotificationRequest request) {
         Notification notification = notifications.findNotificationById(request.getNotificationId());
+        notification.setSeen(true);
+        notifications.save(notification);
         ViewNotificationResponse response = new ViewNotificationResponse();
         response.setDetailId(notification.getDetailId());
         response.setTimeStamp(notification.getTimeStamp());

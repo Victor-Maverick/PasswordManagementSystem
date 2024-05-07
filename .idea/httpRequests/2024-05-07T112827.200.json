@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "663655caa97f2f4b81bb8f53",
+    "notifications": [
+      {
+        "id": "66365bff20edab76a940c57d",
+        "detailId": "66365645a97f2f4b81bb8f54",
+        "recipientName": null,
+        "message": "victor sent you a card!!",
+        "timeStamp": "2024-05-04T17:02:07.203",
+        "seen": false
+      }
+    ],
+    "loggedIn": true
+  },
+  "successful": true
+}

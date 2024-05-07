@@ -1,5 +1,6 @@
 package africa.semicolon.secureVault.utils;
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
+import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.models.User;
 import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
@@ -7,6 +8,9 @@ import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
 import africa.semicolon.secureVault.dtos.requests.RegisterRequest;
 import africa.semicolon.secureVault.dtos.responses.*;
 import africa.semicolon.secureVault.exceptions.InvalidCardException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static africa.semicolon.secureVault.data.models.CardType.*;
 import static africa.semicolon.secureVault.utils.EncryptDecrypt.*;
@@ -31,7 +35,8 @@ public class Mapper {
         LoginResponse response = new LoginResponse();
         response.setId(user.getId());
         response.setLoggedIn(user.isLoggedIn());
-        response.setNotifications(user.getNotificationList());
+        List<Notification> notifications = user.getNotificationList().stream().filter(notification -> !notification.isSeen()).toList();
+        response.setNotifications(notifications);
         return response;
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
