@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
             if (!decrypt(user.getPassword(), user.getIdNumber()/456).equals(loginRequest.getPassword()))throw new IncorrectPasswordException("wrong password");
             user.setLoggedIn(true);
             users.save(user);
-            System.out.println(displayUnseenNotifications(user));
+            displayUnseenNotifications(user);
             return mapLogin(user);
         }
 
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest) {
+    public List<PasswordEntry> findPasswordEntriesFor(FindUserPasswordsRequest findRequest) {
             User user = users.findByUsername(findRequest.getUsername().toLowerCase());
             if(user == null)throw new UserNotFoundException(findRequest.getUsername()+" not found");
             validateUserLogin(user);

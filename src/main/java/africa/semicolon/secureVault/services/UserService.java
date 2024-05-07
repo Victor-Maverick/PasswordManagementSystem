@@ -31,7 +31,7 @@ public interface UserService {
 
     PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest);
 
-    List<PasswordEntry> findPasswordEntriesFor(FindUserEntriesRequest findRequest);
+    List<PasswordEntry> findPasswordEntriesFor(FindUserPasswordsRequest findRequest);
 
     String deletePasswordEntry(DeletePasswordEntryRequest deleteRequest);
     String deleteNotification(DeleteNotificationRequest deleteNotificationRequest);

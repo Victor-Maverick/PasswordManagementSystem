@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class FindUserEntriesRequest {
+public class FindUserPasswordsRequest {
     private String username;
 }

@@ -120,7 +120,7 @@ public class UserController {
     }
 
     @GetMapping("/view-allPasswordsFor")
-    public ResponseEntity<?> viewAllPasswords(@RequestBody FindUserEntriesRequest findRequest){
+    public ResponseEntity<?> viewAllPasswords(@RequestBody FindUserPasswordsRequest findRequest){
         try{
             List<PasswordEntry> response = userService.findPasswordEntriesFor(findRequest);
             return new ResponseEntity<>(new ApiResponse(true, response), OK);

@@ -18,4 +18,5 @@ public interface NotificationService {
     Notification findById(String notificationId);
     List<Notification> viewAllNotificationsFor(FindNotificationRequest request);
     ViewNotificationResponse viewNotification(ViewNotificationRequest request);
+
 }

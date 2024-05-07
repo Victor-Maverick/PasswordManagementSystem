@@ -1,5 +1,6 @@
 package africa.semicolon.secureVault.services;
 
+import africa.semicolon.secureVault.data.models.User;
 import africa.semicolon.secureVault.data.repositories.CardRepository;
 import africa.semicolon.secureVault.data.repositories.PasswordEntries;
 import africa.semicolon.secureVault.data.repositories.Users;
@@ -160,6 +161,7 @@ public class UserServiceTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
         userService.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username4");
@@ -200,6 +202,7 @@ public class UserServiceTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
         var card = userService.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username4");
@@ -226,6 +229,7 @@ public class UserServiceTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
         var card = userService.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username4");
@@ -257,6 +261,7 @@ public class UserServiceTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
         var card = userService.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username4");
@@ -283,6 +288,7 @@ public class UserServiceTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
         var card = userService.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username4");
@@ -315,7 +321,7 @@ public class UserServiceTest {
         passwordRequest.setPassword("password");
         passwordRequest.setWebsite("www.pling.com");
         userService.addPasswordEntry(passwordRequest);
-        FindUserEntriesRequest request = new FindUserEntriesRequest();
+        FindUserPasswordsRequest request = new FindUserPasswordsRequest();
         request.setUsername("username4");
         assertEquals(1, userService.findPasswordEntriesFor(request).size());
     }
@@ -335,7 +341,7 @@ public class UserServiceTest {
         passwordRequest.setPassword("password");
         passwordRequest.setWebsite("www.pling.com");
         var response = userService.addPasswordEntry(passwordRequest);
-        FindUserEntriesRequest request = new FindUserEntriesRequest();
+        FindUserPasswordsRequest request = new FindUserPasswordsRequest();
         request.setUsername("username4");
         assertEquals(1, userService.findPasswordEntriesFor(request).size());
         DeletePasswordEntryRequest deleteRequest = new DeletePasswordEntryRequest();
@@ -364,8 +370,65 @@ public class UserServiceTest {
         ViewPasswordRequest viewRequest = new ViewPasswordRequest();
         viewRequest.setId(response.getId());
         viewRequest.setAuthorName("username4");
+        viewRequest.setViewerName("username4");
         var viewResponse = userService.viewPassword(viewRequest);
         assertEquals(viewResponse.getPassword(), "password");
+    }
+
+    @Test
+    public void sharePasswordTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username4");
+        registerRequest.setPassword("password");
+        userService.register(registerRequest);
+        RegisterRequest registerRequest2 = new RegisterRequest();
+        registerRequest2.setUsername("username5");
+        registerRequest2.setPassword("password");
+        userService.register(registerRequest2);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("username4");
+        loginRequest.setPassword("password");
+        userService.login(loginRequest);
+        PasswordEntryRequest passwordRequest = new PasswordEntryRequest();
+        passwordRequest.setUsername("username4");
+        passwordRequest.setPassword("password");
+        passwordRequest.setWebsite("www.pling.com");
+        var response = userService.addPasswordEntry(passwordRequest);
+        SharePasswordRequest shareRequest = new SharePasswordRequest();
+        shareRequest.setPasswordId(response.getId());
+        shareRequest.setSenderName("username4");
+        shareRequest.setReceiverName("username5");
+        userService.sharePassword(shareRequest);
+        User user = users.findByUsername("username5");
+        assertEquals(1, user.getPasswordEntryList().size());
+    }
+
+    @Test
+    public void sharePasswordUserIsNotifiedTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username4");
+        registerRequest.setPassword("password");
+        userService.register(registerRequest);
+        RegisterRequest registerRequest2 = new RegisterRequest();
+        registerRequest2.setUsername("username5");
+        registerRequest2.setPassword("password");
+        userService.register(registerRequest2);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("username4");
+        loginRequest.setPassword("password");
+        userService.login(loginRequest);
+        PasswordEntryRequest passwordRequest = new PasswordEntryRequest();
+        passwordRequest.setUsername("username4");
+        passwordRequest.setPassword("password");
+        passwordRequest.setWebsite("www.pling.com");
+        var response = userService.addPasswordEntry(passwordRequest);
+        SharePasswordRequest shareRequest = new SharePasswordRequest();
+        shareRequest.setPasswordId(response.getId());
+        shareRequest.setSenderName("username4");
+        shareRequest.setReceiverName("username5");
+        userService.sharePassword(shareRequest);
+        User user = users.findByUsername("username5");
+        assertEquals(1, user.getNotificationList().size());
     }
 
 

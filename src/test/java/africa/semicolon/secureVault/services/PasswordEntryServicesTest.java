@@ -1,9 +1,7 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.repositories.PasswordEntries;
-import africa.semicolon.secureVault.dtos.requests.DeletePasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewPasswordRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,8 +87,10 @@ public class PasswordEntryServicesTest {
         passwordRequest2.setPassword("password2");
         passwordRequest2.setWebsite("www.hotbox.com");
         passwordEntryServices.addPasswordEntry(passwordRequest2);
+        FindUserPasswordsRequest request = new FindUserPasswordsRequest();
+        request.setUsername("username");
         assertEquals(2, passwordEntries.count());
-        assertEquals(2, passwordEntryServices.findAllPasswordsFor("username").size());
+        assertEquals(2, passwordEntryServices.findAllPasswordsFor(request).size());
     }
 
 

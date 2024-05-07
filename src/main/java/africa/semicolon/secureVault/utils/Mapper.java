@@ -31,7 +31,7 @@ public class Mapper {
         LoginResponse response = new LoginResponse();
         response.setId(user.getId());
         response.setLoggedIn(user.isLoggedIn());
-        response.setUsername(user.getUsername());
+        response.setNotifications(user.getNotificationList());
         return response;
     }
     public static AddCardResponse map(CreditCardInformation cardInformation){
