@@ -25,8 +25,4 @@ public class EncryptDecrypt {
         return new String(cipher);
     }
 
-    public static void main(String[] args) {
-        System.out.println(encrypt("Victor234", 234));
-        System.out.println(decrypt("ԨԻԵՆՁՄԄԅԆ", 234));
-    }
 }
