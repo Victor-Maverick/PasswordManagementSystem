@@ -1,10 +1,7 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.repositories.CardRepository;
-import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
-import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
-import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.exceptions.SecureVaultAppExceptions;
 import africa.semicolon.secureVault.secureVault;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static africa.semicolon.secureVault.data.models.CardType.MASTER_CARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -33,6 +31,7 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         creditCardServices.addCardInformation(cardRequest);
         assertEquals(1, cardRepository.count());
     }
@@ -44,10 +43,11 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("51199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         try {
             creditCardServices.addCardInformation(cardRequest);
         }catch (SecureVaultAppExceptions e){
-            assertEquals(e.getMessage(), cardRequest.getCardNumber()+"is invalid");
+            assertEquals(e.getMessage(), cardRequest.getCardNumber()+" is invalid");
         }
         assertEquals(0, cardRepository.count());
     }
@@ -59,10 +59,11 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("5099110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         try {
             creditCardServices.addCardInformation(cardRequest);
         }catch (SecureVaultAppExceptions e){
-            assertEquals(e.getMessage(), cardRequest.getCardNumber()+"is invalid");
+            assertEquals(e.getMessage(), cardRequest.getCardNumber()+" is invalid");
         }
         assertEquals(0, cardRepository.count());
     }
@@ -74,6 +75,7 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         var card = creditCardServices.addCardInformation(cardRequest);
         assertEquals(1, cardRepository.count());
         DeleteCardRequest deleteRequest = new DeleteCardRequest();
@@ -90,6 +92,7 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         creditCardServices.addCardInformation(cardRequest);
         FindDetailsRequest request = new FindDetailsRequest();
         request.setUsername("username");
@@ -104,6 +107,7 @@ public class CreditCardServicesTest {
         cardRequest.setCardNumber("5199110726076091");
         cardRequest.setBankName("Wells Fargo");
         cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
         var response = creditCardServices.addCardInformation(cardRequest);
         ViewCardRequest viewRequest = new ViewCardRequest();
         viewRequest.setId(response.getId());
@@ -112,4 +116,28 @@ public class CreditCardServicesTest {
         assertEquals("12345", cardResponse.getPin());
 
     }
+
+    @Test
+    public void editCardDetailsTest() throws Exception {
+        AddCardRequest cardRequest = new AddCardRequest();
+        cardRequest.setUsername("username");
+        cardRequest.setCardNumber("5199110726076091");
+        cardRequest.setBankName("Wells Fargo");
+        cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("msonter victor");
+        var response = creditCardServices.addCardInformation(cardRequest);
+        assertEquals(1, cardRepository.count());
+        EditCardDetailsRequest request = new EditCardDetailsRequest();
+        request.setCardNumber("5199110726076091");
+        request.setBankName("Chase");
+        request.setPin("12345");
+        request.setCardType(MASTER_CARD);
+        request.setCardId(response.getId());
+        request.setNameOnCard("Gagnon");
+        var editResponse = creditCardServices.editCardInformation(request);
+        assertEquals(1, cardRepository.count());
+        assertEquals(response.getId(), editResponse.getCardId());
+    }
+
+
 }

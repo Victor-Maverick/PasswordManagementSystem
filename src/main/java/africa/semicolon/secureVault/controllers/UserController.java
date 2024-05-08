@@ -69,6 +69,17 @@ public class UserController {
         }
     }
 
+
+    @PatchMapping("/edit-card-info")
+    public ResponseEntity<?> editCardInformation(@RequestBody EditCardDetailsRequest request){
+        try{
+            EditCardResponse response = userService.editCardInformation(request);
+            return new ResponseEntity<>(new ApiResponse(true, response), OK);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/view-cardInfo")
     public ResponseEntity<?> viewCardInformation(@RequestBody ViewCardRequest viewRequest){
         try{
@@ -103,6 +114,15 @@ public class UserController {
     public ResponseEntity<?> addPasswordEntry(@RequestBody PasswordEntryRequest passwordRequest){
         try{
             PasswordEntryResponse response = userService.addPasswordEntry(passwordRequest);
+            return new ResponseEntity<>(new ApiResponse(true, response), CREATED);
+        }catch (SecureVaultAppExceptions e){
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
+        }
+    }
+    @PatchMapping("/edit-password")
+    public ResponseEntity<?> editPassword(@RequestBody EditPasswordRequest request){
+        try{
+            EditPasswordResponse response = userService.editPassword(request);
             return new ResponseEntity<>(new ApiResponse(true, response), CREATED);
         }catch (SecureVaultAppExceptions e){
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
@@ -190,7 +210,3 @@ public class UserController {
     }
 
 }
-//--> Unlock before a findAllPasswords
-//--> Use a question to reset the unlock password
-//--> Generate password
-//-->

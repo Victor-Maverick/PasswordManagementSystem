@@ -4,11 +4,13 @@ import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.models.User;
 import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
+import africa.semicolon.secureVault.dtos.requests.EditCardDetailsRequest;
 import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
 import africa.semicolon.secureVault.dtos.requests.RegisterRequest;
 import africa.semicolon.secureVault.dtos.responses.*;
 import africa.semicolon.secureVault.exceptions.InvalidCardException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +98,7 @@ public class Mapper {
 
 
 
-    private static void setCardType(CreditCardInformation cardInformation) {
+    public static void setCardType(CreditCardInformation cardInformation) {
         switch (cardInformation.getCardNumber().charAt(0)){
             case '4'-> cardInformation.setCardType(VISA);
             case '5'-> cardInformation.setCardType(MASTER_CARD);
@@ -124,8 +126,8 @@ public class Mapper {
         return response;
     }
 
-    public static boolean isValidCardNumber(AddCardRequest cardRequest){
-        String cardNumber = cardRequest.getCardNumber().replaceAll("\\D", "");
+    public static boolean isValidCardNumber(String cardNumber){
+        cardNumber = cardNumber.replaceAll("\\D", "");
         if (cardNumber.length() < 13 || cardNumber.length() > 16) {
             return false;
         }
@@ -141,5 +143,28 @@ public class Mapper {
             total += digit;
         }
         return total % 10 == 0;
+    }
+
+    public static void map(CreditCardInformation cardInformation, EditCardDetailsRequest request){
+        cardInformation.setCardType(request.getCardType());
+        cardInformation.setCardNumber(encrypt(request.getCardNumber(), cardInformation.getCardId()/56));
+        cardInformation.setPin(encrypt(request.getPin(), cardInformation.getIdNumber()/53));
+        cardInformation.setNameOnCard(encrypt(request.getNameOnCard(), cardInformation.getCardId()/56));
+        cardInformation.setBankName(encrypt(request.getBankName(), cardInformation.getCardId()/56));
+    }
+
+    public static EditCardResponse mapEditCard(CreditCardInformation cardInformation){
+        EditCardResponse response = new EditCardResponse();
+        response.setDateEdited(LocalDateTime.now());
+        response.setCardId(cardInformation.getId());
+        response.setNewBankName(decrypt(cardInformation.getBankName(), cardInformation.getCardId()/56));
+        return response;
+    }
+    public static EditPasswordResponse mapEditPassword(PasswordEntry passwordEntry){
+        EditPasswordResponse response = new EditPasswordResponse();
+        response.setPasswordId(passwordEntry.getId());
+        response.setDateEdited(LocalDateTime.now());
+        response.setWebsite(passwordEntry.getWebsite());
+        return response;
     }
 }

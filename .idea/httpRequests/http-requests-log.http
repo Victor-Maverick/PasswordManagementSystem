@@ -1,3 +1,43 @@
+PATCH http://localhost:8804/api/edit-password
+Content-Type: application/json
+Content-Length: 168
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "passwordId": "66356724c34839500be9f660",
+  "newPassword": "345323",
+  "confirmPassword": "345323",
+  "website": "victormsonter@gmail.com",
+  "username": "gagnon"
+}
+
+<> 2024-05-08T084628.201.json
+
+###
+
+PATCH http://localhost:8804/api/edit-card-info
+Content-Type: application/json
+Content-Length: 195
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "username": "gagnon",
+  "cardNumber": "5199110726076091",
+  "cardId": "6634f39121208345442f096a",
+  "pin": "35643",
+  "bankName": "Opay",
+  "nameOnCard": "Grey huncho",
+  "cardType": "VISA"
+}
+
+<> 2024-05-08T084154.200.json
+
+###
+
 POST http://localhost:8804/api/sign-in
 Content-Type: application/json
 Content-Length: 52
@@ -797,38 +837,6 @@ content-length: 25
 }
 
 <> 2024-05-04T093506.200.json
-
-###
-
-POST http://localhost:8800/api/share-password
-Content-Type: application/json
-Content-Length: 97
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "passwordId": "6635eefe1042426eeaaf21dd",
-  "senderName": "mson",
-  "receiverName": "grace"
-}
-
-<> 2024-05-04T093456.200.json
-
-###
-
-GET http://localhost:8800/api/view-allPasswordsFor
-Content-Type: application/json
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 25
-
-{
-  "username": "grace"
-}
-
-<> 2024-05-04T093408.200.json
 
 ###
 

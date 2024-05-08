@@ -4,6 +4,7 @@ import africa.semicolon.secureVault.data.models.CreditCardInformation;
 import africa.semicolon.secureVault.data.models.Notification;
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.models.User;
+import africa.semicolon.secureVault.data.repositories.CardRepository;
 import africa.semicolon.secureVault.data.repositories.Users;
 import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.*;
@@ -11,7 +12,6 @@ import africa.semicolon.secureVault.exceptions.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
@@ -24,8 +24,9 @@ public class UserServiceImpl implements UserService{
         private final CreditCardServiceImpl cardServices;
         private final PasswordEntryServices passwordEntryServices;
         private final NotificationService notificationService;
+    private final CardRepository cardRepository;
 
-        @Override
+    @Override
         public RegisterResponse register(RegisterRequest registerRequest) {
             validateRegistration(registerRequest);
             User user = new User();
@@ -223,6 +224,36 @@ public class UserServiceImpl implements UserService{
         return passwordShareMap(sender, receiver, passwordEntry);
     }
 
+    @Override
+    public EditPasswordResponse editPassword(EditPasswordRequest editPasswordRequest) {
+            User user = users.findByUsername(editPasswordRequest.getUsername());
+            if(user == null) throw new UserNotFoundException(editPasswordRequest.getUsername()+" not found");
+            validateUserLogin(user);
+            var editResponse = passwordEntryServices.editPassword(editPasswordRequest);
+            PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(editResponse.getPasswordId());
+            List<PasswordEntry> passwordEntryList = user.getPasswordEntryList();
+            passwordEntryList.removeIf(passwordEntry1 -> passwordEntry1.getId().equals(editPasswordRequest.getPasswordId()));
+            passwordEntryList.add(passwordEntry);
+            user.setPasswordEntryList(passwordEntryList);
+            users.save(user);
+          return editResponse;
+    }
+
+    @Override
+    public EditCardResponse editCardInformation(EditCardDetailsRequest request) {
+            User user = users.findByUsername(request.getUsername().toLowerCase());
+            if(user == null) throw new UserNotFoundException(request.getUsername()+" not found");
+            validateUserLogin(user);
+            var editResponse = cardServices.editCardInformation(request);
+            CreditCardInformation cardInformation = cardRepository.findCardById(editResponse.getCardId());
+            List<CreditCardInformation>cardInformationList = user.getCardInformationList();
+            cardInformationList.removeIf(cardInformation1 -> cardInformation1.getId().equals(editResponse.getCardId()));
+            cardInformationList.add(cardInformation);
+            user.setCardInformationList(cardInformationList);
+            users.save(user);
+        return editResponse;
+    }
+
     private void notifyReceiverForPassword(User sender, PasswordEntry passwordEntry, User receiver) {
         NotificationRequest request = new NotificationRequest();
         request.setMessage(sender.getUsername() + " sent you a password");
@@ -267,12 +298,7 @@ public class UserServiceImpl implements UserService{
         return passwordEntry;
     }
 
-    private static List<Notification> displayUnseenNotifications(User user) {
-        List<Notification> notifications = user.getNotificationList();
-        List<Notification> newNotifications = new ArrayList<>();
-        notifications.forEach(notification -> {if (!notification.isSeen())newNotifications.add(notification);});
-        return newNotifications;
-    }
+
 
 
     private void validateRegistration(RegisterRequest registerRequest) {

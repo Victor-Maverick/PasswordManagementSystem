@@ -93,6 +93,25 @@ public class PasswordEntryServicesTest {
         assertEquals(2, passwordEntryServices.findAllPasswordsFor(request).size());
     }
 
+    @Test
+    public void editPasswordTest(){
+        PasswordEntryRequest passwordRequest = new PasswordEntryRequest();
+        passwordRequest.setUsername("username");
+        passwordRequest.setPassword("password");
+        passwordRequest.setWebsite("www.pling.com");
+        var response = passwordEntryServices.addPasswordEntry(passwordRequest);
+        assertEquals(1, passwordEntries.count());
+        EditPasswordRequest request = new EditPasswordRequest();
+        request.setPasswordId(response.getId());
+        request.setNewPassword("new password");
+        request.setWebsite("www.pling.com");
+        request.setConfirmPassword("new password");
+        request.setUsername("username");
+        var editResponse = passwordEntryServices.editPassword(request);
+        assertEquals(1, passwordEntries.count());
+        assertEquals(response.getId(), editResponse.getPasswordId());
+
+    }
 
 
 }

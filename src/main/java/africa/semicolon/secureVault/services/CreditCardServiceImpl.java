@@ -3,11 +3,9 @@ package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
 import africa.semicolon.secureVault.data.repositories.CardRepository;
-import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
-import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
-import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.AddCardResponse;
+import africa.semicolon.secureVault.dtos.responses.EditCardResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewCardResponse;
 import africa.semicolon.secureVault.exceptions.CardDetailsNotFoundException;
 import africa.semicolon.secureVault.exceptions.InvalidCardException;
@@ -15,8 +13,11 @@ import africa.semicolon.secureVault.exceptions.SecureVaultAppExceptions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import static africa.semicolon.secureVault.utils.EncryptDecrypt.decrypt;
+import static africa.semicolon.secureVault.utils.EncryptDecrypt.encrypt;
 import static africa.semicolon.secureVault.utils.Mapper.*;
 
 @Service
@@ -26,7 +27,7 @@ public class CreditCardServiceImpl implements CreditCardServices {
     @Override
     public AddCardResponse addCardInformation(AddCardRequest cardRequest){
         CreditCardInformation cardInformation = new CreditCardInformation();
-        if(!isValidCardNumber(cardRequest)) throw new InvalidCardException(cardRequest.getCardNumber()+ " is invalid");
+        if(!isValidCardNumber(cardRequest.getCardNumber())) throw new InvalidCardException(cardRequest.getCardNumber()+ " is invalid");
         try {
             map(cardInformation, cardRequest);
         } catch (Exception e) {
@@ -65,5 +66,15 @@ public class CreditCardServiceImpl implements CreditCardServices {
     @Override
     public CreditCardInformation findById(String id) {
         return cardRepository.findCardById(id);
+    }
+
+    @Override
+    public EditCardResponse editCardInformation(EditCardDetailsRequest request) {
+        CreditCardInformation cardInformation = cardRepository.findCardById(request.getCardId());
+        if(cardInformation==null)throw new CardDetailsNotFoundException("card details not found");
+        if (!isValidCardNumber(request.getCardNumber()))throw new InvalidCardException("Card number is invalid");
+        map(cardInformation, request);
+        cardRepository.save(cardInformation);
+        return mapEditCard(cardInformation);
     }
 }

@@ -2,10 +2,9 @@ package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.PasswordEntry;
 import africa.semicolon.secureVault.data.repositories.PasswordEntries;
-import africa.semicolon.secureVault.dtos.requests.DeletePasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.FindUserPasswordsRequest;
-import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewPasswordRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
+import africa.semicolon.secureVault.dtos.responses.EditCardResponse;
+import africa.semicolon.secureVault.dtos.responses.EditPasswordResponse;
 import africa.semicolon.secureVault.dtos.responses.PasswordEntryResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewPasswordResponse;
 import africa.semicolon.secureVault.exceptions.PasswordNotFoundException;
@@ -13,10 +12,11 @@ import africa.semicolon.secureVault.exceptions.SecureVaultAppExceptions;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import static africa.semicolon.secureVault.utils.Mapper.map;
-import static africa.semicolon.secureVault.utils.Mapper.passwordMap;
+import static africa.semicolon.secureVault.utils.EncryptDecrypt.encrypt;
+import static africa.semicolon.secureVault.utils.Mapper.*;
 
 @Service
 @AllArgsConstructor
@@ -78,5 +78,16 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
     @Override
     public PasswordEntry findPasswordById(String id) {
         return passwordEntries.findPasswordEntryById(id);
+    }
+
+    @Override
+    public EditPasswordResponse editPassword(EditPasswordRequest request) {
+        PasswordEntry passwordEntry = passwordEntries.findPasswordEntryById(request.getPasswordId());
+        if(!request.getNewPassword().equals(request.getConfirmPassword()))throw new PasswordNotFoundException("Passwords do not match");
+        passwordEntry.setUsername(request.getUsername());
+        passwordEntry.setWebsite(request.getWebsite());
+        passwordEntry.setPassword(encrypt(request.getConfirmPassword(), passwordEntry.getPasswordId()/47));
+        passwordEntries.save(passwordEntry);
+        return mapEditPassword(passwordEntry);
     }
 }

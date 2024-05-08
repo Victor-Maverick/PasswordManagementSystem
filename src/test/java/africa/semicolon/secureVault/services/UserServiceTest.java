@@ -431,6 +431,76 @@ public class UserServiceTest {
         assertEquals(1, user.getNotificationList().size());
     }
 
+    @Test
+    public void userViewPasswordOnce_notificationDoesNotDisplayOnSecondLoginTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username4");
+        registerRequest.setPassword("password");
+        userService.register(registerRequest);
+        RegisterRequest registerRequest2 = new RegisterRequest();
+        registerRequest2.setUsername("username5");
+        registerRequest2.setPassword("password");
+        userService.register(registerRequest2);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("username4");
+        loginRequest.setPassword("password");
+        userService.login(loginRequest);
+        PasswordEntryRequest passwordRequest = new PasswordEntryRequest();
+        passwordRequest.setUsername("username4");
+        passwordRequest.setPassword("password");
+        passwordRequest.setWebsite("www.pling.com");
+        var response = userService.addPasswordEntry(passwordRequest);
+        SharePasswordRequest shareRequest = new SharePasswordRequest();
+        shareRequest.setPasswordId(response.getId());
+        shareRequest.setSenderName("username4");
+        shareRequest.setReceiverName("username5");
+        userService.sharePassword(shareRequest);
+        User user = users.findByUsername("username5");
+        LoginRequest loginRequest2 = new LoginRequest();
+        loginRequest2.setUsername("username5");
+        loginRequest2.setPassword("password");
+        var loginResponse = userService.login(loginRequest2);
+        String id = loginResponse.getNotifications().getFirst().getId();
+        ViewNotificationRequest request = new ViewNotificationRequest();
+        request.setNotificationId(id);
+        request.setUsername("username5");
+        userService.viewNotification(request);
+        LoginRequest loginRequest3 = new LoginRequest();
+        loginRequest3.setUsername("username5");
+        loginRequest3.setPassword("password");
+        var loginResponse2 = userService.login(loginRequest3);
+        assertEquals(0, loginResponse2.getNotifications().size());
+    }
 
+    @Test
+    public void addCardInformation_recipientCardListIncreasesTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username4");
+        registerRequest.setPassword("password");
+        userService.register(registerRequest);
+        RegisterRequest registerRequest2 = new RegisterRequest();
+        registerRequest2.setUsername("username5");
+        registerRequest2.setPassword("password");
+        userService.register(registerRequest2);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("username4");
+        loginRequest.setPassword("password");
+        userService.login(loginRequest);
+        AddCardRequest cardRequest = new AddCardRequest();
+        cardRequest.setUsername("username4");
+        cardRequest.setCardNumber("5199110726076091");
+        cardRequest.setBankName("Wells Fargo");
+        cardRequest.setPin("12345");
+        cardRequest.setNameOnCard("Msonter Victor");
+        var card = userService.addCardInformation(cardRequest);
+        ShareCardDetailsRequest request = new ShareCardDetailsRequest();
+        request.setCardId(card.getId());
+        request.setSenderUsername("username4");
+        request.setReceiverUsername("username5");
+        userService.shareCardInformation(request);
+        User user = users.findByUsername("username5");
+        assertEquals(1, user.getNotificationList().size());
+        assertEquals(1, user.getCardInformationList().size());
+    }
 
 }

@@ -1,11 +1,9 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.CreditCardInformation;
-import africa.semicolon.secureVault.dtos.requests.AddCardRequest;
-import africa.semicolon.secureVault.dtos.requests.DeleteCardRequest;
-import africa.semicolon.secureVault.dtos.requests.FindDetailsRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewCardRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
 import africa.semicolon.secureVault.dtos.responses.AddCardResponse;
+import africa.semicolon.secureVault.dtos.responses.EditCardResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewCardResponse;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +21,6 @@ public interface CreditCardServices {
     ViewCardResponse viewCardInformation(ViewCardRequest viewRequest);
 
     CreditCardInformation findById(String id);
+
+    EditCardResponse editCardInformation(EditCardDetailsRequest request);
 }

@@ -1,10 +1,8 @@
 package africa.semicolon.secureVault.services;
 
 import africa.semicolon.secureVault.data.models.PasswordEntry;
-import africa.semicolon.secureVault.dtos.requests.DeletePasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.FindUserPasswordsRequest;
-import africa.semicolon.secureVault.dtos.requests.PasswordEntryRequest;
-import africa.semicolon.secureVault.dtos.requests.ViewPasswordRequest;
+import africa.semicolon.secureVault.dtos.requests.*;
+import africa.semicolon.secureVault.dtos.responses.EditPasswordResponse;
 import africa.semicolon.secureVault.dtos.responses.PasswordEntryResponse;
 import africa.semicolon.secureVault.dtos.responses.ViewPasswordResponse;
 import org.springframework.stereotype.Service;
@@ -23,4 +21,6 @@ public interface PasswordEntryServices {
     List<PasswordEntry> findAllPasswordsFor(FindUserPasswordsRequest username);
 
     PasswordEntry findPasswordById(String id);
+
+    EditPasswordResponse editPassword(EditPasswordRequest request);
 }
