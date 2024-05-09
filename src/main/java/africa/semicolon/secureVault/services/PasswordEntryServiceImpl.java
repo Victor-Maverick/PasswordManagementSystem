@@ -24,7 +24,7 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
     private final PasswordEntries passwordEntries;
     @Override
     public PasswordEntryResponse addPasswordEntry(PasswordEntryRequest passwordRequest) {
-        if (!(isEmailValid(passwordRequest.getWebsite()) || isWebsiteValid(passwordRequest.getWebsite())))throw new SecureVaultAppExceptions(passwordRequest.getWebsite()+" not valid");
+        validateWebsite(passwordRequest.getWebsite());
         PasswordEntry passwordEntry = new PasswordEntry();
         try {
             map(passwordEntry,passwordRequest);
@@ -35,18 +35,16 @@ public class PasswordEntryServiceImpl implements PasswordEntryServices{
         return map(passwordEntry);
     }
 
-    private boolean isWebsiteValid(String website) {
+
+    private void validateWebsite(String website) {
         website = website.toLowerCase();
-        String emailRegex =  "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})$";
-        return website.matches(emailRegex);
+        String emailRegex =  "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String webRegex =  "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})$";
+        if (!website.matches(emailRegex) || !website.matches(webRegex)) {
+            throw new SecureVaultAppExceptions(website+" not valid");
+        }
     }
 
-    public static boolean isEmailValid(String email) {
-        email = email.replaceAll(" ", "");
-        email = email.toLowerCase();
-        String emailRegex =  "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email.matches(emailRegex);
-    }
 
 
     @Override

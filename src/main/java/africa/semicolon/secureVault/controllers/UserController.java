@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins="*")
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
