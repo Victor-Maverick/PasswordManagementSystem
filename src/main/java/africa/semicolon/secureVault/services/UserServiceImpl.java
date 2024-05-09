@@ -193,8 +193,9 @@ public class UserServiceImpl implements UserService{
         if (viewer == null) throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
         validateUserLogin(viewer);
         List<PasswordEntry> passwordEntries = viewer.getPasswordEntryList();
-        passwordEntries.forEach(passwordEntry -> {if (!passwordEntry.getId().equals(viewRequest.getId()))throw new UserNotFoundException("Not allowed to view this password");});
-        return passwordEntryServices.viewPassword(viewRequest);
+        PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(viewRequest.getId());
+        if (passwordEntries.contains(passwordEntry))return passwordEntryServices.viewPassword(viewRequest);
+        else throw new PasswordNotFoundException(viewer.getUsername()+" not allowed to view");
     }
 
     @Override
