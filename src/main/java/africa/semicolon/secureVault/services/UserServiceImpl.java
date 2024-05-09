@@ -192,10 +192,7 @@ public class UserServiceImpl implements UserService{
         User viewer = users.findByUsername(viewRequest.getViewerName().toLowerCase());
         if (viewer == null) throw new UserNotFoundException(viewRequest.getViewerName()+" not found");
         validateUserLogin(viewer);
-        List<PasswordEntry> passwordEntries = viewer.getPasswordEntryList();
-        PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(viewRequest.getId());
-        if (passwordEntries.contains(passwordEntry))return passwordEntryServices.viewPassword(viewRequest);
-        else throw new PasswordNotFoundException(viewer.getUsername()+" not allowed to view");
+        return passwordEntryServices.viewPassword(viewRequest);
     }
 
     @Override
@@ -217,9 +214,11 @@ public class UserServiceImpl implements UserService{
         User sender = users.findByUsername(shareRequest.getSenderName().toLowerCase());
         if(sender == null) throw new UserNotFoundException(shareRequest.getSenderName()+" not found");
         validateUserLogin(sender);
-        sender.getPasswordEntryList().forEach(passwordEntry -> {if (!passwordEntry.getId().equals(shareRequest.getPasswordId()))throw new PasswordNotFoundException("not found");});
+        List<PasswordEntry> senderPasswords = sender.getPasswordEntryList();
+        PasswordEntry passwordEntry = passwordEntryServices.findPasswordById(shareRequest.getPasswordId());
+        //if (!senderPasswords.contains(passwordEntry))throw new PasswordNotFoundException("not found");
         User receiver = users.findByUsername(shareRequest.getReceiverName().toLowerCase());
-        PasswordEntry passwordEntry = addPasswordToReceiver(shareRequest, receiver);
+        passwordEntry = addPasswordToReceiver(shareRequest, receiver);
         notifyReceiverForPassword(sender, passwordEntry, receiver);
         users.save(receiver);
         return passwordShareMap(sender, receiver, passwordEntry);
